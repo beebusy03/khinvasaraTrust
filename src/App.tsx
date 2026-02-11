@@ -29,11 +29,6 @@ function App() {
   useEffect(() => {
     if (loading) return;
 
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -41,7 +36,7 @@ function App() {
           (entry.target as HTMLElement).style.transform = 'translateY(0)';
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     const elements = document.querySelectorAll('.purpose-card, .membership-card, .leader-card, .media-card, .gallery-item');
     elements.forEach(el => {
@@ -51,9 +46,7 @@ function App() {
       observerRef.current?.observe(el);
     });
 
-    return () => {
-      observerRef.current?.disconnect();
-    };
+    return () => observerRef.current?.disconnect();
   }, [loading]);
 
   return (

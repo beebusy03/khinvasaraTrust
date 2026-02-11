@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -28,10 +29,11 @@ const Navbar = () => {
           <i className="fas fa-hands-holding-heart"></i>
         </div>
         <div className="logo-text-container">
-          <span className="logo-text">Khinvasara Trust</span>
+          <span className="logo-text notranslate">Khinvasara Trust</span>
           <span className="logo-tagline">Serving Since 2007</span>
         </div>
       </a>
+      
       <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
         <li><a href="#home" onClick={(e) => handleNavClick(e, '#home')}>Home</a></li>
         <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')}>About</a></li>
@@ -39,11 +41,24 @@ const Navbar = () => {
         <li><a href="#media" onClick={(e) => handleNavClick(e, '#media')}>Media</a></li>
         <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a></li>
         <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
-        <li><a href="#donate" onClick={(e) => handleNavClick(e, '#donate')} className="btn btn-primary"><i className="fas fa-heart"></i> Donate</a></li>
+        <li>
+          <a href="#donate" onClick={(e) => handleNavClick(e, '#donate')} className="btn btn-primary">
+            <i className="fas fa-heart"></i> Donate
+          </a>
+        </li>
+        <li className="nav-lang-switcher">
+          <LanguageSwitcher />
+        </li>
       </ul>
-      <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-        <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-      </button>
+      
+      <div className="nav-right-controls">
+        <div className="mobile-lang-switcher">
+          <LanguageSwitcher />
+        </div>
+        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+        </button>
+      </div>
     </nav>
   );
 };
