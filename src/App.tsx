@@ -14,9 +14,11 @@ import CTA from './components/CTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
+import DonateModal from './components/DonateModal';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -49,11 +51,19 @@ function App() {
     return () => observerRef.current?.disconnect();
   }, [loading]);
 
+  const openDonateModal = () => {
+    setIsDonateModalOpen(true);
+  };
+
+  const closeDonateModal = () => {
+    setIsDonateModalOpen(false);
+  };
+
   return (
     <>
       <Preloader isLoading={loading} />
-      <Navbar />
-      <Hero />
+      <Navbar onDonateClick={openDonateModal} />
+      <Hero onDonateClick={openDonateModal} />
       <About />
       <Purpose />
       <Membership />
@@ -66,6 +76,10 @@ function App() {
       <Contact />
       <Footer />
       <BackToTop />
+      <DonateModal 
+        isOpen={isDonateModalOpen} 
+        onClose={closeDonateModal} 
+      />
     </>
   );
 }

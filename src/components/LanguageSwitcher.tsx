@@ -17,13 +17,24 @@ const LanguageSwitcher = () => {
   const [currentLang, setCurrentLang] = useState('en');
   const [isLoaded, setIsLoaded] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const isInitializing = useRef(false);
 
   useEffect(() => {
+    // Get current language from cookie on mount
+    const getCookieLang = () => {
+      const match = document.cookie.match(/googtrans=\/[a-z]{2}\/([a-z]{2})/);
+      return match ? match[1] : 'en';
+    };
+    setCurrentLang(getCookieLang());
+
     // Check if script already exists
     if (document.getElementById('google-translate-script')) {
       setIsLoaded(true);
       return;
     }
+
+    if (isInitializing.current) return;
+    isInitializing.current = true;
 
     // Create hidden element for Google Translate
     const translateDiv = document.createElement('div');
@@ -33,16 +44,18 @@ const LanguageSwitcher = () => {
 
     // Initialize Google Translate
     window.googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: 'en',
-          includedLanguages: 'en,mr',
-          autoDisplay: false,
-          multilanguagePage: true,
-        },
-        'google_translate_element'
-      );
-      setIsLoaded(true);
+      if (window.google && window.google.translate) {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr',
+            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          'google_translate_element'
+        );
+        setIsLoaded(true);
+      }
     };
 
     // Load Google Translate script
@@ -50,14 +63,18 @@ const LanguageSwitcher = () => {
     script.id = 'google-translate-script';
     script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     script.async = true;
+    script.onerror = () => {
+      console.error('Failed to load Google Translate');
+      isInitializing.current = false;
+    };
     document.body.appendChild(script);
 
     // Cleanup
     return () => {
       const existingScript = document.getElementById('google-translate-script');
-      if (existingScript) {
-        existingScript.remove();
-      }
+      const existingDiv = document.getElementById('google_translate_element');
+      if (existingScript) existingScript.remove();
+      if (existingDiv) existingDiv.remove();
     };
   }, []);
 
@@ -73,35 +90,38 @@ const LanguageSwitcher = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Get current language from cookie
-  useEffect(() => {
-    const match = document.cookie.match(/googtrans=\/en\/(\w+)/);
-    if (match) {
-      setCurrentLang(match[1]);
-    }
-  }, []);
-
   const changeLanguage = (langCode: string) => {
-    setCurrentLang(langCode);
+    if (langCode === currentLang) {
+      setIsOpen(false);
+      return;
+    }
+
     setIsOpen(false);
 
+    // Clear all existing cookies
+    const domain = window.location.hostname;
+    const cookieOptions = [
+      `path=/`,
+      `path=/; domain=${domain}`,
+      `path=/; domain=.${domain}`,
+    ];
+
+    cookieOptions.forEach(option => {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ${option}`;
+    });
+
     if (langCode === 'en') {
-      // Reset to English
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
+      // For English, just clear cookies and reload
+      localStorage.setItem('preferredLanguage', 'en');
       window.location.reload();
     } else {
-      // Change language
-      document.cookie = `googtrans=/en/${langCode}; path=/`;
-      document.cookie = `googtrans=/en/${langCode}; path=/; domain=${window.location.hostname}`;
-      
-      const select = document.querySelector('.goog-te-combo') as HTMLSelectElement;
-      if (select) {
-        select.value = langCode;
-        select.dispatchEvent(new Event('change'));
-      } else {
-        window.location.reload();
-      }
+      // For other languages, set cookie and reload
+      const newValue = `/en/${langCode}`;
+      cookieOptions.forEach(option => {
+        document.cookie = `googtrans=${newValue}; ${option}`;
+      });
+      localStorage.setItem('preferredLanguage', langCode);
+      window.location.reload();
     }
   };
 

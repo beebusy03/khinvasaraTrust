@@ -1,10 +1,19 @@
-const Hero = () => {
+interface HeroProps {
+  onDonateClick: () => void;
+}
+
+const Hero = ({ onDonateClick }: HeroProps) => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  const handleDonateClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onDonateClick();
   };
 
   return (
@@ -19,7 +28,7 @@ const Hero = () => {
         <p className="hero-quote">"I know of no great men except those who have rendered great service to the human race."</p>
         <p className="hero-quote-author">— Voltaire</p>
         <div className="hero-buttons">
-          <a href="#donate" onClick={(e) => handleScroll(e, '#donate')} className="btn btn-primary">
+          <a href="#donate" onClick={handleDonateClick} className="btn btn-primary">
             <i className="fas fa-hand-holding-heart"></i>
             Make a Donation
           </a>

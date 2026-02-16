@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
+import Tlogo from '../assets/tlogo.png';
 
-const Navbar = () => {
+interface NavbarProps {
+  onDonateClick: () => void;
+}
+
+const Navbar = ({ onDonateClick }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -22,14 +27,20 @@ const Navbar = () => {
     setMobileMenuOpen(false);
   };
 
+  const handleDonateClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onDonateClick();
+    setMobileMenuOpen(false);
+  };
+
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <a href="#" className="logo">
         <div className="logo-icon">
-          <i className="fas fa-hands-holding-heart"></i>
+           <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
         </div>
         <div className="logo-text-container">
-          <span className="logo-text notranslate">Khinvasara Trust</span>
+          <span className="logo-text">Khinvasara Trust</span>
           <span className="logo-tagline">Serving Since 2007</span>
         </div>
       </a>
@@ -41,18 +52,13 @@ const Navbar = () => {
         <li><a href="#media" onClick={(e) => handleNavClick(e, '#media')}>Media</a></li>
         <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a></li>
         <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
-        <li>
-          <a href="#donate" onClick={(e) => handleNavClick(e, '#donate')} className="btn btn-primary">
-            <i className="fas fa-heart"></i> Donate
-          </a>
-        </li>
-        <li className="nav-lang-switcher">
-          <LanguageSwitcher />
-        </li>
       </ul>
       
       <div className="nav-right-controls">
-        <div className="mobile-lang-switcher">
+        <a href="#donate" onClick={handleDonateClick} className="btn btn-primary donate-btn">
+          <i className="fas fa-heart"></i> Donate
+        </a>
+        <div className="desktop-lang-switcher">
           <LanguageSwitcher />
         </div>
         <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
