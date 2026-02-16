@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
-import Tlogo from '../assets/tlogo.png';
+import Tlogo from '../assets/Tlogo.png';
 
 interface NavbarProps {
   onDonateClick: () => void;
