@@ -15,7 +15,6 @@ const languages = [
 const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
-  const [isLoaded, setIsLoaded] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isInitializing = useRef(false);
 
@@ -29,7 +28,6 @@ const LanguageSwitcher = () => {
 
     // Check if script already exists
     if (document.getElementById('google-translate-script')) {
-      setIsLoaded(true);
       return;
     }
 
@@ -54,7 +52,6 @@ const LanguageSwitcher = () => {
           },
           'google_translate_element'
         );
-        setIsLoaded(true);
       }
     };
 
@@ -91,37 +88,50 @@ const LanguageSwitcher = () => {
   }, []);
 
   const changeLanguage = (langCode: string) => {
+    // Close dropdown first
+    setIsOpen(false);
+    
+    // If same language, just return
     if (langCode === currentLang) {
-      setIsOpen(false);
       return;
     }
 
-    setIsOpen(false);
-
-    // Clear all existing cookies
+    // Clear all existing Google Translate cookies
     const domain = window.location.hostname;
-    const cookieOptions = [
-      `path=/`,
-      `path=/; domain=${domain}`,
-      `path=/; domain=.${domain}`,
-    ];
-
-    cookieOptions.forEach(option => {
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ${option}`;
+    const paths = ['/', ''];
+    const domains = ['', domain, `.${domain}`];
+    
+    // Clear cookies with all combinations
+    domains.forEach(d => {
+      paths.forEach(p => {
+        const cookieString = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${p || '/'}${d ? `; domain=${d}` : ''}`;
+        document.cookie = cookieString;
+      });
     });
 
+    // Set new language preference
+    localStorage.setItem('preferredLanguage', langCode);
+
     if (langCode === 'en') {
-      // For English, just clear cookies and reload
-      localStorage.setItem('preferredLanguage', 'en');
-      window.location.reload();
+      // For English, clear cookies and reload
+      // Force reload with cache bypass
+      window.location.href = window.location.pathname;
     } else {
-      // For other languages, set cookie and reload
+      // For other languages, set the translation cookie
       const newValue = `/en/${langCode}`;
-      cookieOptions.forEach(option => {
-        document.cookie = `googtrans=${newValue}; ${option}`;
-      });
-      localStorage.setItem('preferredLanguage', langCode);
-      window.location.reload();
+      
+      // Set cookie for current domain
+      document.cookie = `googtrans=${newValue}; path=/`;
+      
+      // Also set for parent domain if on subdomain
+      if (domain.includes('.')) {
+        document.cookie = `googtrans=${newValue}; path=/; domain=.${domain.split('.').slice(-2).join('.')}`;
+      }
+      
+      // Force hard reload to apply translation
+      setTimeout(() => {
+        window.location.reload();
+      }, 100); // Small delay to ensure cookie is set
     }
   };
 
