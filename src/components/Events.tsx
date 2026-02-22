@@ -1,9 +1,158 @@
 import { useState } from 'react';
 
-const years = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2018', '2020', '2021'];
+// 2008 Images
+import image2008_001 from '../assets/2008/001.jpg';
+import image2008_002 from '../assets/2008/002.jpg';
+import image2008_003 from '../assets/2008/003.jpg';
+
+// 2020 Images
+import image2020_001 from '../assets/2020/001 Umed Parivar.jpg';
+import image2020_002 from '../assets/2020/002 Transformer.jpg';
+import image2020_003 from '../assets/2020/003 Transformer .jpg';
+import image2020_004 from '../assets/2020/004 Members at Umed Parivar.jpg';
+import image2020_005 from '../assets/2020/005 Review meeting.jpg';
+import image2020_006 from '../assets/2020/006 Members with Umed team.jpg';
+import image2020_007 from '../assets/2020/007 Family Memebers 2.jpg';
+import image2020_thanks from '../assets/2020/Thanks.jpg';
+
+// 2021 Images
+import image2021_001 from '../assets/2021/001 .jpg';
+import image2021_002 from '../assets/2021/002.jpg';
+import image2021_003 from '../assets/2021/003.jpg';
+import image2021_004 from '../assets/2021/004.jpg';
+import image2021_005 from '../assets/2021/005.jpg';
+import image2021_006 from '../assets/2021/006.jpg';
+import image2021_007 from '../assets/2021/007.jpg';
+import image2021_008 from '../assets/2021/008.jpg';
+import image2021_009 from '../assets/2021/009.jpg';
+import image2021_010 from '../assets/2021/010.jpg';
+import image2021_011 from '../assets/2021/011.jpg';
+import image2021_012 from '../assets/2021/012.jpg';
+import image2021_013 from '../assets/2021/013.jpg';
+import image2021_014 from '../assets/2021/014.jpg';
+import image2021_015 from '../assets/2021/015.jpg';
+
+// 2023 Images
+import image2023_001 from '../assets/2023/001.jpg';
+import image2023_002 from '../assets/2023/002.jpg';
+import image2023_003 from '../assets/2023/003.jpg';
+import image2023_004 from '../assets/2023/004.jpg';
+import image2023_005 from '../assets/2023/005.jpg';
+import image2023_thanks from '../assets/2023/Thanks note.jpg';
+
+// 2025 Documents
+import thanksPDF2025 from '../assets/2025/Thanks Note_.pdf';
+
+const years = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2018', '2020', '2021', '2023', '2025'];
+
+// Define image galleries for each year
+const eventImages: Record<string, Array<{src: string, alt: string, caption: string}>> = {
+  '2025': [],
+  '2023': [
+    { src: image2023_001, alt: 'Digital Learning Initiative', caption: 'Digital Learning to Rural Classrooms' },
+    { src: image2023_002, alt: 'Classroom Setup', caption: 'Setting up digital infrastructure' },
+    { src: image2023_003, alt: 'Student Learning', caption: 'Students engaging with digital content' },
+    { src: image2023_004, alt: 'Educational Program', caption: 'Educational program in progress' },
+    { src: image2023_005, alt: 'Community Participation', caption: 'Community members participating' },
+    { src: image2023_thanks, alt: 'Thanks Note', caption: 'Appreciation and gratitude' },
+  ],
+  '2021': [
+    { src: image2021_001, alt: 'Vaccination Drive 2021', caption: 'COVID-19 Vaccination Initiative' },
+    { src: image2021_002, alt: 'Vaccination Process', caption: 'Medical team conducting vaccination' },
+    { src: image2021_003, alt: 'Beneficiaries', caption: 'Beneficiaries receiving vaccine' },
+    { src: image2021_004, alt: 'Healthcare Workers', caption: 'Healthcare professionals at work' },
+    { src: image2021_005, alt: 'Vaccination Camp', caption: 'Vaccination camp setup' },
+    { src: image2021_006, alt: 'Documentation', caption: 'Recording vaccination details' },
+    { src: image2021_007, alt: 'Medical Team', caption: 'Medical team coordination' },
+    { src: image2021_008, alt: 'Vaccination Progress', caption: 'Progress of vaccination drive' },
+    { src: image2021_009, alt: 'Community Care', caption: 'Community care initiatives' },
+    { src: image2021_010, alt: 'Health Awareness', caption: 'Health awareness programs' },
+    { src: image2021_011, alt: 'Second Dose Drive', caption: 'Second dose vaccination drive' },
+    { src: image2021_012, alt: 'Vaccination Completion', caption: 'Completing vaccination process' },
+    { src: image2021_013, alt: 'Post-Vaccination', caption: 'Post-vaccination care and monitoring' },
+    { src: image2021_014, alt: 'Success Milestone', caption: 'Successful completion milestone' },
+    { src: image2021_015, alt: 'Certificate Distribution', caption: 'Certificate distribution ceremony' },
+  ],
+  '2020': [
+    { src: image2020_001, alt: 'Umed Parivar Meeting', caption: 'Meeting at Umed Parivar' },
+    { src: image2020_002, alt: 'Transformer Installation', caption: 'Transformer installation project' },
+    { src: image2020_003, alt: 'Transformer Setup', caption: 'Setting up electrical transformer' },
+    { src: image2020_004, alt: 'Members at Umed Parivar', caption: 'Members gathering at Umed Parivar' },
+    { src: image2020_005, alt: 'Review Meeting', caption: 'Review meeting with team members' },
+    { src: image2020_006, alt: 'Members with Umed Team', caption: 'Members collaborating with Umed team' },
+    { src: image2020_007, alt: 'Family Members', caption: 'Family members participation' },
+    { src: image2020_thanks, alt: 'Thanks Note', caption: 'Appreciation and thanks' },
+  ],
+  '2008': [
+    { src: image2008_001, alt: 'Solar Panel Installation', caption: 'Installing solar panels at the school' },
+    { src: image2008_002, alt: 'Inauguration Ceremony', caption: 'Independence Day inauguration ceremony' },
+    { src: image2008_003, alt: 'Solar System Setup', caption: '3.25 Kw solar power generation system' },
+  ],
+};
 
 const Events = () => {
   const [activeYear, setActiveYear] = useState('2021');
+  const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null);
+
+  // Image Gallery Component
+  const ImageGallery = ({ year }: { year: string }) => {
+    const images = eventImages[year];
+    
+    if (!images || images.length === 0) return null;
+
+    return (
+      <div className="event-gallery">
+        <h4 className="gallery-title">
+          <i className="fas fa-camera"></i> Event Photographs
+        </h4>
+        <div className="event-images-grid">
+          {images.map((image, index) => (
+            <div 
+              key={index} 
+              className="event-image-item"
+              onClick={() => setSelectedImage(image)}
+            >
+              <img 
+                src={image.src} 
+                alt={image.alt}
+                loading="lazy"
+              />
+              <div className="image-overlay">
+                <i className="fas fa-search-plus"></i>
+                <p>{image.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  // Lightbox Modal for full-size images
+  const ImageModal = () => {
+    if (!selectedImage) return null;
+
+    return (
+      <div 
+        className="image-modal-overlay" 
+        onClick={() => setSelectedImage(null)}
+      >
+        <div className="image-modal-content">
+          <button 
+            className="modal-close-btn"
+            onClick={() => setSelectedImage(null)}
+          >
+            <i className="fas fa-times"></i>
+          </button>
+          <img 
+            src={selectedImage.src} 
+            alt={selectedImage.alt}
+          />
+          <p className="image-caption">{selectedImage.caption}</p>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section className="events-section" id="events">
@@ -26,6 +175,9 @@ const Events = () => {
               onClick={() => setActiveYear(year)}
             >
               {year}
+              {eventImages[year] && (
+                <i className="fas fa-image year-has-images"></i>
+              )}
             </span>
           ))}
         </div>
@@ -49,6 +201,8 @@ const Events = () => {
               
               <p>Our Trust thanks PMC's doctors and the vaccination drive team's co-operation for carrying out this activity effortlessly and in an organized manner for both doses. Umed Parivar Trust has thanked our Trust for making this Vaccination drive successful for their team members.</p>
 
+              <ImageGallery year="2021" />
+
               <div className="event-highlights">
                 <div className="highlight-item">
                   <i className="fas fa-syringe"></i>
@@ -64,6 +218,104 @@ const Events = () => {
                   <i className="fas fa-hospital"></i>
                   <h4>PMC</h4>
                   <p>Partnership</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Year 2023 */}
+        {activeYear === '2023' && (
+          <div className="featured-event">
+            <div className="featured-event-header">
+              <span className="event-year">Year 2023</span>
+              <h3>Bringing Digital Learning to Rural Classrooms</h3>
+              <span className="category"><i className="fas fa-graduation-cap"></i> Category: Education</span>
+            </div>
+            <div className="featured-event-content">
+              <p><strong>Empowering students at Lalbahadur Shastri Vidyalay, Amondi with e-learning tools so potential meets opportunity.</strong></p>
+              
+              <p>With our Education focus area, the Khinvasara Family Trust has enabled the installation of a Digital E-Learning Kit for students of 8th to 10th standard at the school located in Ambegaon Taluka in <strong>Dec 2023</strong>.</p>
+              
+              <p>Being a remote school, it faces ongoing challenges such as limited availability of teachers and restricted access to new-age technology in education. Despite these constraints, the students show strong potential and a genuine eagerness to learn. With the introduction of digital e-learning modules, students now have improved access to visual, interactive learning that supports better understanding of core subjects and concepts.</p>
+              
+              <p>The project was successfully implemented by <strong>Sumconcepts Technologies, Pune</strong>, through their established education enablement offering under Compkin.</p>
+              
+              <p>This initiative reflects our commitment to bridging the digital edge and creating equal learning opportunities for students in rural remote areas—helping bright young minds shine through access to modern education tools.</p>
+
+              <ImageGallery year="2023" />
+
+              <div className="event-highlights">
+                <div className="highlight-item">
+                  <i className="fas fa-laptop"></i>
+                  <h4>E-Learning Kit</h4>
+                  <p>Digital Tools</p>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-graduation-cap"></i>
+                  <h4>8-10</h4>
+                  <p>Standards</p>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <h4>Ambegaon</h4>
+                  <p>Taluka</p>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-handshake"></i>
+                  <h4>Sumconcepts</h4>
+                  <p>Partner</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Year 2025 */}
+        {activeYear === '2025' && (
+          <div className="featured-event">
+            <div className="featured-event-header">
+              <span className="event-year">Year 2025</span>
+              <h3>Tree Plantation Drive at Village Vetale</h3>
+              <span className="category"><i className="fas fa-leaf"></i> Category: Environment</span>
+            </div>
+            <div className="featured-event-content">
+              <p>On <strong>22nd June 2025</strong>, a tree plantation drive was organized by <strong>Khinvasara Parivar Trust in collaboration with the 14Trees Foundation</strong> at the serene Village Vetale. The event was truly heartwarming and impactful.</p>
+              
+              <p>With enthusiastic participation from all family members of all ages and the inspiring support of the passionate 14Trees volunteers, the event beautifully blended purpose and joy. From scenic hikes to hands-on tree planting, it was a day filled with nature, bonding, and shared commitment to our environment. All the saplings planted will be maintained by the foundation for years to come.</p>
+              
+              <p>This initiative aligns with our Trust's key focus on environmental responsibility towards mother earth.</p>
+
+              <div className="event-details-box">
+                <h4><i className="fas fa-info-circle"></i> About 14Trees Foundation</h4>
+                <p><strong>14 Trees Foundation</strong> is building a sustainable, carbon-footprint-neutral ecosystem through re-forestation. The foundation is restoring native green cover on ecologically degraded patches of barren hills near Pune.</p>
+                <p><a href="https://www.14trees.org/" target="_blank" rel="noopener noreferrer" className="event-link"><i className="fas fa-external-link-alt"></i> Visit 14Trees Foundation</a></p>
+              </div>
+
+              <a href={thanksPDF2025} target="_blank" rel="noopener noreferrer" className="gratitude-document">
+                <i className="fas fa-file-pdf"></i> View Thanks Note & Gratitude
+              </a>
+
+              <div className="event-highlights">
+                <div className="highlight-item">
+                  <i className="fas fa-tree"></i>
+                  <h4>Tree Planting</h4>
+                  <p>Environmental Initiative</p>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-users"></i>
+                  <h4>All Ages</h4>
+                  <p>Family Participation</p>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <h4>Vetale</h4>
+                  <p>Village</p>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-handshake"></i>
+                  <h4>14Trees</h4>
+                  <p>Partner</p>
                 </div>
               </div>
             </div>
@@ -92,6 +344,8 @@ const Events = () => {
                 <li><i className="fas fa-check-circle"></i> Elimination of power fluctuation has resulted in reduced maintenance of equipment</li>
                 <li><i className="fas fa-check-circle"></i> With regulated 3 phase supply it is now possible to operate grid connected solar power plant reducing the electricity bill</li>
               </ul>
+
+              <ImageGallery year="2020" />
 
               <div className="event-highlights">
                 <div className="highlight-item">
@@ -150,6 +404,8 @@ const Events = () => {
                   </div>
                 </div>
               </div>
+
+              <ImageGallery year="2018" />
 
               <div className="event-highlights">
                 <div className="highlight-item">
@@ -213,6 +469,8 @@ const Events = () => {
                   </div>
                 </div>
               </div>
+
+              <ImageGallery year="2016" />
 
               <div className="event-highlights">
                 <div className="highlight-item">
@@ -297,6 +555,8 @@ const Events = () => {
                 </div>
                 
                 <p><strong>300 women and girls</strong> from Ambavane and surrounding villages got their haemoglobin checked at the camp. The team of doctors and technicians explained the results to each individual and suggested any remedial measures. Lunch was provided to everyone by the Trust and everyone who got tested was also given a packet of black dates to help increase their haemoglobin levels.</p>
+
+                <ImageGallery year="2015" />
 
                 <div className="event-highlights">
                   <div className="highlight-item">
@@ -394,6 +654,8 @@ const Events = () => {
                 <p>On above grounds, the Trust decided to conduct scientific exhibition <strong>"How to make Projects"</strong> in association with "Shastravahini" for students, parents and teachers in Pune. The exhibition included various projects in Optics, Equilibrium, Mechanics, Electrical Connections, Oscillations, Geometry, Geography, Aero-modeling, scientific games, Handicraft skills etc.</p>
                 
                 <p>Exhibition inauguration was done by <strong>Dr. Sanjay Chordia</strong> (Founder and Chairman Suryadatta Management Inst). More than <strong>550 people</strong> visited in two days and found that the exhibition was helpful for them. Many of them have also enrolled for getting trained as Resource person.</p>
+
+                <ImageGallery year="2014" />
 
                 <div className="event-highlights">
                   <div className="highlight-item">
@@ -538,6 +800,8 @@ const Events = () => {
                 
                 <p>The Trust received a lot of help from B. D. Kale College, Ghodegaon in conducting this event successfully. Besides the members of the trust, other prominent personalities present at the event included Prof. Jadhav (Principal - B.D.Kale College), Mr. Shankarbhai Shah (a respected businessman from Shinoli), Mr. Borhade and Ugale Guruji.</p>
 
+                <ImageGallery year="2013" />
+
                 <div className="event-highlights">
                   <div className="highlight-item">
                     <i className="fas fa-lightbulb"></i>
@@ -573,6 +837,8 @@ const Events = () => {
               <p>On the day of the event, more than <strong>200 incandescent bulbs</strong> were replaced by CFLs and the event was graced by the presence of <strong>Mrs. Anita Nighot</strong> (Head, Ghodegaon Panchayat Samiti), <strong>Mr. Bansode</strong> (Representative of electricity board) and <strong>Mrs. Dangat</strong> (Sarpanch - Dhakale village).</p>
               
               <p>Officials of the regional electricity board also commended the initiative taken by Khinvasara Trust and encouraged the members to keep up the good work. The Trust was ably assisted by <strong>Prof. Jadhav</strong>, Principal of B.D.Kale College and his students in organising the event.</p>
+
+              <ImageGallery year="2012" />
 
               <div className="event-highlights">
                 <div className="highlight-item">
@@ -666,6 +932,8 @@ const Events = () => {
                   </ul>
                 </div>
 
+                <ImageGallery year="2011" />
+
                 <div className="event-highlights">
                   <div className="highlight-item">
                     <i className="fas fa-users"></i>
@@ -735,7 +1003,7 @@ const Events = () => {
                 
                 <p>Considering the fact that rural population, both male and female, are more addicted to tobacco and tobacco products, they are more prone to dental diseases. Also hospitals with advance techniques and equipments as well as doctors are not available in villages.</p>
                 
-                <p>Keeping these in mind, on <strong>2nd May 2009</strong>, at Ghodegaon, Khinvasara Trust had arranged a <strong>free Dental and Oral Health camp</strong>.</p>
+                <p>Keeping these in mind, on <strong>2nd May 2010</strong>, at Ghodegaon, Khinvasara Trust had arranged a <strong>free Dental and Oral Health camp</strong>.</p>
 
                 <div className="event-details-box">
                   <h4><i className="fas fa-info-circle"></i> Camp Highlights</h4>
@@ -756,6 +1024,8 @@ const Events = () => {
                     <li><i className="fas fa-check-circle"></i> More than <strong>40 extractions</strong> were done on the spot</li>
                   </ul>
                 </div>
+
+                <ImageGallery year="2010" />
 
                 <div className="event-highlights">
                   <div className="highlight-item">
@@ -889,6 +1159,8 @@ const Events = () => {
                   </ul>
                 </div>
 
+                <ImageGallery year="2009" />
+
                 <div className="event-highlights">
                   <div className="highlight-item">
                     <i className="fas fa-users"></i>
@@ -989,6 +1261,8 @@ const Events = () => {
                   </div>
                 </div>
 
+                <ImageGallery year="2008" />
+
                 <div className="event-highlights">
                   <div className="highlight-item">
                     <i className="fas fa-wheat-awn"></i>
@@ -1060,6 +1334,161 @@ const Events = () => {
         )}
 
       </div>
+
+      {/* Image Modal */}
+      <ImageModal />
+      
+      {/* Add styles for the gallery */}
+      <style>{`
+        .event-gallery {
+          margin: 2rem 0;
+          padding: 1.5rem;
+          background: var(--light);
+          border-radius: 12px;
+        }
+
+        .gallery-title {
+          font-size: 1.2rem;
+          color: var(--dark);
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .event-images-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+
+        .event-image-item {
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          cursor: pointer;
+          aspect-ratio: 4/3;
+          background: var(--border);
+        }
+
+        .event-image-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .event-image-item:hover img {
+          transform: scale(1.05);
+        }
+
+        .image-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          padding: 1rem;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .event-image-item:hover .image-overlay {
+          opacity: 1;
+        }
+
+        .image-overlay i {
+          font-size: 1.5rem;
+          color: white;
+          margin-bottom: 0.5rem;
+        }
+
+        .image-overlay p {
+          color: white;
+          font-size: 0.85rem;
+          text-align: center;
+          margin: 0;
+        }
+
+        .image-modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.95);
+          z-index: 10000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+          animation: fadeIn 0.3s ease;
+        }
+
+        .image-modal-content {
+          position: relative;
+          max-width: 90vw;
+          max-height: 90vh;
+        }
+
+        .image-modal-content img {
+          max-width: 100%;
+          max-height: 85vh;
+          object-fit: contain;
+          border-radius: 8px;
+        }
+
+        .modal-close-btn {
+          position: absolute;
+          top: -40px;
+          right: 0;
+          background: rgba(255,255,255,0.1);
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+          background: rgba(255,255,255,0.2);
+          transform: rotate(90deg);
+        }
+
+        .image-caption {
+          color: white;
+          text-align: center;
+          margin-top: 1rem;
+          font-size: 1rem;
+        }
+
+        .year-has-images {
+          font-size: 0.6rem;
+          margin-left: 0.3rem;
+          color: var(--secondary);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+          .event-images-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          }
+          
+          .modal-close-btn {
+            top: 10px;
+            right: 10px;
+          }
+        }
+      `}</style>
     </section>
   );
 };

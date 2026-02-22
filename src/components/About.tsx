@@ -1,3 +1,5 @@
+import familyImage from '../assets/2020/007 Family Memebers 2.jpg';
+
 const About = () => {
   return (
     <section className="about" id="about">
@@ -9,7 +11,7 @@ const About = () => {
       <div className="about-container">
         <div className="about-image">
           <div className="about-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Khinvasara Trust" />
+            <img src={familyImage} alt="Khinvasara Family Members" />
             <div className="established-badge">
               <span className="year">2007</span>
               <span className="label">Established</span>
