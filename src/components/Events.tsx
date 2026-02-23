@@ -5,6 +5,22 @@ const image2008_001 = '/2008/001.jpg';
 const image2008_002 = '/2008/002.jpg';
 const image2008_003 = '/2008/003.jpg';
 
+// 2018 Images
+const image2018_003 = '/2018/003.jpg';
+const image2018_01 = '/2018/01.JPG';
+const image2018_014 = '/2018/014.JPG';
+const image2018_017 = '/2018/017.JPG';
+const image2018_021 = '/2018/021.JPG';
+const image2018_022 = '/2018/022.JPG';
+const image2018_02b = '/2018/02b.JPG';
+const image2018_02c = '/2018/02c.JPG';
+const image2018_03 = '/2018/03.JPG';
+const image2018_06 = '/2018/06.JPG';
+const image2018_08 = '/2018/08.JPG';
+const image2018_09 = '/2018/09.JPG';
+const image2018_kesari = '/2018/Kesari Media news.jpg';
+const image2018_pudhari = '/2018/Media Pudhari Coverage.jpg';
+
 // 2020 Images
 const image2020_001 = '/2020/001 Umed Parivar.jpg';
 const image2020_002 = '/2020/002 Transformer.jpg';
@@ -40,14 +56,37 @@ const image2023_004 = '/2023/004.jpg';
 const image2023_005 = '/2023/005.jpg';
 const image2023_thanks = '/2023/Thanks note.jpg';
 
-// 2025 Documents
+// 2025 Images
+const image2025_001 = '/2025/001.jpg';
+const image2025_002 = '/2025/002.jpg';
+const image2025_004 = '/2025/004.jpg';
+const image2025_005 = '/2025/005.jpg';
+const image2025_006 = '/2025/006.JPG';
+const image2025_007 = '/2025/007.jpg';
+const image2025_008 = '/2025/008.jpg';
+const image2025_009 = '/2025/009.jpg';
+const image2025_010 = '/2025/010.jpg';
+const image2025_011 = '/2025/011.jpg';
+const image2025_012 = '/2025/012.JPG';
 const thanksPDF2025 = '/2025/Thanks Note_.pdf';
 
 const years = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2018', '2020', '2021', '2023', '2025'];
 
 // Define image galleries for each year
 const eventImages: Record<string, Array<{src: string, alt: string, caption: string}>> = {
-  '2025': [],
+  '2025': [
+    { src: image2025_001, alt: 'Event 2025 - 001', caption: 'Event activity 2025' },
+    { src: image2025_002, alt: 'Event 2025 - 002', caption: 'Community gathering' },
+    { src: image2025_004, alt: 'Event 2025 - 004', caption: 'Program in progress' },
+    { src: image2025_005, alt: 'Event 2025 - 005', caption: 'Participants engaged' },
+    { src: image2025_006, alt: 'Event 2025 - 006', caption: 'Team collaboration' },
+    { src: image2025_007, alt: 'Event 2025 - 007', caption: 'Community support' },
+    { src: image2025_008, alt: 'Event 2025 - 008', caption: 'Event milestone' },
+    { src: image2025_009, alt: 'Event 2025 - 009', caption: 'Active participation' },
+    { src: image2025_010, alt: 'Event 2025 - 010', caption: 'Successful initiative' },
+    { src: image2025_011, alt: 'Event 2025 - 011', caption: 'Community impact' },
+    { src: image2025_012, alt: 'Event 2025 - 012', caption: 'Closing ceremony' },
+  ],
   '2023': [
     { src: image2023_001, alt: 'Digital Learning Initiative', caption: 'Digital Learning to Rural Classrooms' },
     { src: image2023_002, alt: 'Classroom Setup', caption: 'Setting up digital infrastructure' },
@@ -82,6 +121,22 @@ const eventImages: Record<string, Array<{src: string, alt: string, caption: stri
     { src: image2020_006, alt: 'Members with Umed Team', caption: 'Members collaborating with Umed team' },
     { src: image2020_007, alt: 'Family Members', caption: 'Family members participation' },
     { src: image2020_thanks, alt: 'Thanks Note', caption: 'Appreciation and thanks' },
+  ],
+  '2018': [
+    { src: image2018_003, alt: 'Event 2018 - 003', caption: 'Community event 2018' },
+    { src: image2018_01, alt: 'Event 2018 - 01', caption: 'Event activity' },
+    { src: image2018_014, alt: 'Event 2018 - 014', caption: 'Team gathering' },
+    { src: image2018_017, alt: 'Event 2018 - 017', caption: 'Public participation' },
+    { src: image2018_021, alt: 'Event 2018 - 021', caption: 'Program execution' },
+    { src: image2018_022, alt: 'Event 2018 - 022', caption: 'Community involvement' },
+    { src: image2018_02b, alt: 'Event 2018 - 02b', caption: 'Event highlights' },
+    { src: image2018_02c, alt: 'Event 2018 - 02c', caption: 'Active engagement' },
+    { src: image2018_03, alt: 'Event 2018 - 03', caption: 'Participants in action' },
+    { src: image2018_06, alt: 'Event 2018 - 06', caption: 'Successful initiative' },
+    { src: image2018_08, alt: 'Event 2018 - 08', caption: 'Community support' },
+    { src: image2018_09, alt: 'Event 2018 - 09', caption: 'Event milestone' },
+    { src: image2018_kesari, alt: 'Kesari Media Coverage', caption: 'Media coverage - Kesari' },
+    { src: image2018_pudhari, alt: 'Media Pudhari Coverage', caption: 'Media coverage - Pudhari' },
   ],
   '2008': [
     { src: image2008_001, alt: 'Solar Panel Installation', caption: 'Installing solar panels at the school' },
@@ -319,6 +374,7 @@ const Events = () => {
                 </div>
               </div>
             </div>
+            <ImageGallery year="2025" />
           </div>
         )}
 
