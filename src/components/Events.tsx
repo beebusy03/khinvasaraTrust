@@ -1,47 +1,47 @@
 import { useState } from 'react';
 
 // 2008 Images
-const image2008_001 = new URL('../assets/2008/001.jpg', import.meta.url).href;
-const image2008_002 = new URL('../assets/2008/002.jpg', import.meta.url).href;
-const image2008_003 = new URL('../assets/2008/003.jpg', import.meta.url).href;
+const image2008_001 = '/2008/001.jpg';
+const image2008_002 = '/2008/002.jpg';
+const image2008_003 = '/2008/003.jpg';
 
 // 2020 Images
-const image2020_001 = new URL('../assets/2020/001 Umed Parivar.jpg', import.meta.url).href;
-const image2020_002 = new URL('../assets/2020/002 Transformer.jpg', import.meta.url).href;
-const image2020_003 = new URL('../assets/2020/003 Transformer .jpg', import.meta.url).href;
-const image2020_004 = new URL('../assets/2020/004 Members at Umed Parivar.jpg', import.meta.url).href;
-const image2020_005 = new URL('../assets/2020/005 Review meeting.jpg', import.meta.url).href;
-const image2020_006 = new URL('../assets/2020/006 Members with Umed team.jpg', import.meta.url).href;
-const image2020_007 = new URL('../assets/2020/007 Family Memebers 2.jpg', import.meta.url).href;
-const image2020_thanks = new URL('../assets/2020/Thanks.jpg', import.meta.url).href;
+const image2020_001 = '/2020/001 Umed Parivar.jpg';
+const image2020_002 = '/2020/002 Transformer.jpg';
+const image2020_003 = '/2020/003 Transformer .jpg';
+const image2020_004 = '/2020/004 Members at Umed Parivar.jpg';
+const image2020_005 = '/2020/005 Review meeting.jpg';
+const image2020_006 = '/2020/006 Members with Umed team.jpg';
+const image2020_007 = '/2020/007 Family Memebers 2.jpg';
+const image2020_thanks = '/2020/Thanks.jpg';
 
 // 2021 Images
-const image2021_001 = new URL('../assets/2021/001 .jpg', import.meta.url).href;
-const image2021_002 = new URL('../assets/2021/002.jpg', import.meta.url).href;
-const image2021_003 = new URL('../assets/2021/003.jpg', import.meta.url).href;
-const image2021_004 = new URL('../assets/2021/004.jpg', import.meta.url).href;
-const image2021_005 = new URL('../assets/2021/005.jpg', import.meta.url).href;
-const image2021_006 = new URL('../assets/2021/006.jpg', import.meta.url).href;
-const image2021_007 = new URL('../assets/2021/007.jpg', import.meta.url).href;
-const image2021_008 = new URL('../assets/2021/008.jpg', import.meta.url).href;
-const image2021_009 = new URL('../assets/2021/009.jpg', import.meta.url).href;
-const image2021_010 = new URL('../assets/2021/010.jpg', import.meta.url).href;
-const image2021_011 = new URL('../assets/2021/011.jpg', import.meta.url).href;
-const image2021_012 = new URL('../assets/2021/012.jpg', import.meta.url).href;
-const image2021_013 = new URL('../assets/2021/013.jpg', import.meta.url).href;
-const image2021_014 = new URL('../assets/2021/014.jpg', import.meta.url).href;
-const image2021_015 = new URL('../assets/2021/015.jpg', import.meta.url).href;
+const image2021_001 = '/2021/001 .jpg';
+const image2021_002 = '/2021/002.jpg';
+const image2021_003 = '/2021/003.jpg';
+const image2021_004 = '/2021/004.jpg';
+const image2021_005 = '/2021/005.jpg';
+const image2021_006 = '/2021/006.jpg';
+const image2021_007 = '/2021/007.jpg';
+const image2021_008 = '/2021/008.jpg';
+const image2021_009 = '/2021/009.jpg';
+const image2021_010 = '/2021/010.jpg';
+const image2021_011 = '/2021/011.jpg';
+const image2021_012 = '/2021/012.jpg';
+const image2021_013 = '/2021/013.jpg';
+const image2021_014 = '/2021/014.jpg';
+const image2021_015 = '/2021/015.jpg';
 
 // 2023 Images
-const image2023_001 = new URL('../assets/2023/001.jpg', import.meta.url).href;
-const image2023_002 = new URL('../assets/2023/002.jpg', import.meta.url).href;
-const image2023_003 = new URL('../assets/2023/003.jpg', import.meta.url).href;
-const image2023_004 = new URL('../assets/2023/004.jpg', import.meta.url).href;
-const image2023_005 = new URL('../assets/2023/005.jpg', import.meta.url).href;
-const image2023_thanks = new URL('../assets/2023/Thanks note.jpg', import.meta.url).href;
+const image2023_001 = '/2023/001.jpg';
+const image2023_002 = '/2023/002.jpg';
+const image2023_003 = '/2023/003.jpg';
+const image2023_004 = '/2023/004.jpg';
+const image2023_005 = '/2023/005.jpg';
+const image2023_thanks = '/2023/Thanks note.jpg';
 
 // 2025 Documents
-const thanksPDF2025 = new URL('../assets/2025/Thanks Note_.pdf', import.meta.url).href;
+const thanksPDF2025 = '/2025/Thanks Note_.pdf';
 
 const years = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2018', '2020', '2021', '2023', '2025'];
 
