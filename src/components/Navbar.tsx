@@ -11,9 +11,7 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -21,9 +19,7 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setMobileMenuOpen(false);
   };
 
@@ -34,38 +30,77 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <a href="#" className="logo">
-        <div className="logo-icon">
-           <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
-        </div>
-        <div className="logo-text-container">
-          <span className="logo-text">Khinvasara Trust</span>
-          <span className="logo-tagline">Serving Since 2007</span>
-        </div>
-      </a>
-      
-      <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
-        <li><a href="#home" onClick={(e) => handleNavClick(e, '#home')}>Home</a></li>
-        <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')}>About</a></li>
-        <li><a href="#events" onClick={(e) => handleNavClick(e, '#events')}>Events</a></li>
-        <li><a href="#media" onClick={(e) => handleNavClick(e, '#media')}>Media</a></li>
-        <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a></li>
-        <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
-      </ul>
-      
-      <div className="nav-right-controls">
-        <a href="#donate" onClick={handleDonateClick} className="btn btn-primary donate-btn">
-          <i className="fas fa-heart"></i> Donate
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        {/* ── Logo ── */}
+        <a href="#" className="logo">
+          <div className="logo-icon">
+            <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
+          </div>
+          <div className="logo-text-container">
+            <span className="logo-text">Khinvasara Trust</span>
+            <span className="logo-tagline">Serving Since 2007</span>
+          </div>
         </a>
-        <div className="desktop-lang-switcher">
-          <LanguageSwitcher />
+
+        {/* ── Nav links (desktop visible, mobile drawer) ── */}
+        <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
+          <button
+            className="mobile-nav-close"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <i className="fas fa-times"></i>
+          </button>
+          <li><a href="#home"    onClick={(e) => handleNavClick(e, '#home')}>Home</a></li>
+          <li><a href="#about"   onClick={(e) => handleNavClick(e, '#about')}>About</a></li>
+          <li><a href="#events"  onClick={(e) => handleNavClick(e, '#events')}>Events</a></li>
+          <li><a href="#media"   onClick={(e) => handleNavClick(e, '#media')}>Media</a></li>
+          <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a></li>
+          <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
+          
+        </ul>
+
+        {/* ── Right controls ── */}
+        <div className="nav-right-controls">
+          {/* Desktop donate button */}
+          <a href="#donate" onClick={handleDonateClick} className="btn btn-primary donate-btn">
+            <i className="fas fa-heart"></i> Donate
+          </a>
+
+          {/*
+           * BOTH switchers render the same component.
+           * CSS controls which one is visible at each breakpoint:
+           *   .desktop-lang-switcher → display:none mobile | display:block desktop
+           *   .mobile-lang-switcher  → display:block mobile | display:none desktop
+           * This ensures Google Translate script always initialises,
+           * regardless of which breakpoint we are on.
+           */}
+          <div className="desktop-lang-switcher">
+            <LanguageSwitcher />
+          </div>
+          <div className="mobile-lang-switcher">
+            <LanguageSwitcher />
+          </div>
+
+          {/* Hamburger */}
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+          </button>
         </div>
-        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-        </button>
-      </div>
-    </nav>
+      </nav>
+
+      {mobileMenuOpen && (
+        <div
+          className="mobile-nav-overlay active"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+    </>
   );
 };
 

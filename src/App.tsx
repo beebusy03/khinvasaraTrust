@@ -3,7 +3,6 @@ import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Purpose from './components/Purpose';
 import Membership from './components/Membership';
 import Events from './components/Events';
 import Media from './components/Media';
@@ -65,7 +64,6 @@ function App() {
       <Navbar onDonateClick={openDonateModal} />
       <Hero onDonateClick={openDonateModal} />
       <About />
-      <Purpose />
       <Membership />
       <Events />
       <Media />

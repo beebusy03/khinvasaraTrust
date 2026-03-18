@@ -35,14 +35,14 @@ const Contact = () => {
             <i className="fas fa-phone-alt"></i>
             <div>
               <h4>Phone Number</h4>
-              <p>+91 20-2589 8536<br />+91 94226 46691</p>
+              <p>+91 94226 46691</p>
             </div>
           </div>
           <div className="contact-item">
             <i className="fas fa-envelope"></i>
             <div>
               <h4>Email Address</h4>
-              <p>info@khinvasaratrust.org<br />khinvasaratrust@gmail.com</p>
+              <p>info@khinvasaratrust.org</p>
             </div>
           </div>
           <div className="contact-item">
@@ -53,10 +53,10 @@ const Contact = () => {
             </div>
           </div>
           <div className="social-links">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
+           
+           
             <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-linkedin-in"></i></a>
+           
             <a href="#"><i className="fab fa-youtube"></i></a>
           </div>
         </div>

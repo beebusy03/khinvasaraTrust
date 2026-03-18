@@ -23,10 +23,8 @@ const Hero = ({ onDonateClick }: HeroProps) => {
           <i className="fas fa-certificate"></i>
           Registered Public Charitable Trust Since 2007
         </span>
-        <h1>Khinvasara Family Welfare Nidhi</h1>
-        <p className="hero-subtitle">Empowering Communities Through Education, Health & Social Service</p>
-        <p className="hero-quote">"I know of no great men except those who have rendered great service to the human race."</p>
-        <p className="hero-quote-author">— Voltaire</p>
+        <h1>Khinvasara Parivar (Ghodegaonkar) Welfare Nidhi</h1>
+        <p className="hero-tagline" style={{marginBottom:"5px"}}>Serving Humanity with Compassion & Dedication</p>
         <div className="hero-buttons">
           <a href="#donate" onClick={handleDonateClick} className="btn btn-primary">
             <i className="fas fa-hand-holding-heart"></i>
