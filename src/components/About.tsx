@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import familyImage from '../../public/2020/007 Family Memebers 2.jpg';
 
 // 5 family snaps for the carousel
 const carouselImages = [
