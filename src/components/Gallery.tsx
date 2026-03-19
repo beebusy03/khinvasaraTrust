@@ -19,7 +19,7 @@ const health_2021_vaccine2 = '/2021/008.jpg';
 const health_2020_pmcares = '/2020PMCares/image152.jpg';
 
 // Education Category Images
-const edu_2008_chairs = '/2008/001.jpg';
+
 const edu_2009_watercooler = '/2009/001 2009 Water cooler.jpg';
 const edu_2010_bench1 = '/2010Benchesdonation/15th Aug Snap 1.jpg';
 const edu_2010_bench2 = '/2010Benchesdonation/15th Aug Snap 2.jpg';
@@ -80,8 +80,6 @@ const galleryItems: GalleryItem[] = [
   { image: health_2020_pmcares, title: 'PM CARES Fund Contribution', category: 'COVID Relief – 2020', filterCategory: 'Health', year: '2020' },
 
   // Education
-  { image: edu_2008_chairs, title: 'Chair Donation to School Library', category: 'Education Support – 2008', filterCategory: 'Education', year: '2008' },
-  { image: edu_2009_watercooler, title: 'Water Cooler for B.D. Kale College', category: 'Campus Health – 2009', filterCategory: 'Education', year: '2009' },
   { image: edu_2010_bench1, title: 'Bench Donation for B.C.S. Program', category: 'Education Infra – 2010', filterCategory: 'Education', year: '2010' },
   { image: edu_2010_bench2, title: 'Supporting College Infrastructure', category: 'Education Infra – 2010', filterCategory: 'Education', year: '2010' },
   { image: edu_2011_science, title: 'Science Projects Exhibition', category: 'Education – 2011', filterCategory: 'Education', year: '2011', large: true },

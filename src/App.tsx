@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import DonateModal from './components/DonateModal';
+import VideoSection from './components/VideoSection';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -70,6 +71,7 @@ function App() {
       <Gallery />
       <Board />
       <Leaders />
+      <VideoSection/>
       <CTA />
       <Contact />
       <Footer />
