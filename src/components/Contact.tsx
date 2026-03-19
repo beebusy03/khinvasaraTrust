@@ -28,7 +28,7 @@ const Contact = () => {
             <i className="fas fa-map-marker-alt"></i>
             <div>
               <h4>Our Address</h4>
-              <p>'Aastha', Plot No. 8, Madhukunj Hsg Society,<br />Panchavati, Pashan Road, Pune - 08</p>
+              <p>Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
             </div>
           </div>
           <div className="contact-item">

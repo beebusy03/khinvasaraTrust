@@ -58,24 +58,17 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
           <li><a href="#media"   onClick={(e) => handleNavClick(e, '#media')}>Media</a></li>
           <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a></li>
           <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
-          
         </ul>
 
         {/* ── Right controls ── */}
         <div className="nav-right-controls">
-          {/* Desktop donate button */}
-          <a href="#donate" onClick={handleDonateClick} className="btn btn-primary donate-btn">
-            <i className="fas fa-heart"></i> Donate
-          </a>
+          {/* Desktop-only donate button — hidden on mobile via CSS */}
+          <div className="desktop-donate-btn">
+            <a href="#donate" onClick={handleDonateClick} className="btn btn-primary donate-btn">
+              <i className="fas fa-heart"></i> Donate
+            </a>
+          </div>
 
-          {/*
-           * BOTH switchers render the same component.
-           * CSS controls which one is visible at each breakpoint:
-           *   .desktop-lang-switcher → display:none mobile | display:block desktop
-           *   .mobile-lang-switcher  → display:block mobile | display:none desktop
-           * This ensures Google Translate script always initialises,
-           * regardless of which breakpoint we are on.
-           */}
           <div className="desktop-lang-switcher">
             <LanguageSwitcher />
           </div>

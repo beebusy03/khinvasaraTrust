@@ -262,9 +262,9 @@ interface DetailItem { label: string; value: string; }
 interface InfoBox {
   title: string;
   icon: string;
-  items?: string[];      // bullet list
-  details?: DetailItem[]; // key-value grid
-  text?: string;         // plain paragraph
+  items?: string[];
+  details?: DetailItem[];
+  text?: string;
   link?: { href: string; label: string };
 }
 interface Initiative {
@@ -273,23 +273,23 @@ interface Initiative {
   category: string;
   categoryIcon: string;
   date: string;
-  description: string[];       // array of paragraphs
+  description: string[];
   quote?: string;
   infoBoxes?: InfoBox[];
   photos?: Photo[];
-  mediaPhotos?: Photo[];        // separate media-coverage gallery
+  mediaPhotos?: Photo[];
   stats: Stat[];
-  featuredPhoto?: Photo;        // single prominent image (e.g. water cooler)
+  featuredPhoto?: Photo;
   pdfLink?: { href: string; label: string };
 }
 interface YearEntry {
   year: string;
-  label: string;              // displayed in the year picker
+  label: string;
   initiatives: Initiative[];
 }
 
 // ============================================================
-// DATA — add a new year by appending one object to TIMELINE
+// DATA
 // ============================================================
 const TIMELINE: YearEntry[] = [
   // ── 2025 ─────────────────────────────────────────────────
@@ -331,10 +331,10 @@ const TIMELINE: YearEntry[] = [
           { src: image2025_012, alt: 'Event 2025 - 012', caption: 'Closing ceremony' },
         ],
         stats: [
-          { icon: 'fas fa-tree',         value: 'Tree Planting', label: 'Environmental Initiative' },
-          { icon: 'fas fa-users',         value: 'All Ages',      label: 'Family Participation' },
-          { icon: 'fas fa-map-marker-alt',value: 'Vetale',        label: 'Village' },
-          { icon: 'fas fa-handshake',     value: '14Trees',       label: 'Partner' },
+          { icon: 'fas fa-tree',          value: 'Tree Planting', label: 'Environmental Initiative' },
+          { icon: 'fas fa-users',          value: 'All Ages',      label: 'Family Participation' },
+          { icon: 'fas fa-map-marker-alt', value: 'Vetale',        label: 'Village' },
+          { icon: 'fas fa-handshake',      value: '14Trees',       label: 'Partner' },
         ],
       },
     ],
@@ -411,9 +411,9 @@ const TIMELINE: YearEntry[] = [
           { src: image2021_015, alt: 'Certificate Distribution', caption: 'Certificate distribution ceremony' },
         ],
         stats: [
-          { icon: 'fas fa-syringe',        value: '34+',  label: 'People Vaccinated' },
-          { icon: 'fas fa-calendar-check', value: '2',    label: 'Vaccination Drives' },
-          { icon: 'fas fa-hospital',       value: 'PMC',  label: 'Partnership' },
+          { icon: 'fas fa-syringe',        value: '34+', label: 'People Vaccinated' },
+          { icon: 'fas fa-calendar-check', value: '2',   label: 'Vaccination Drives' },
+          { icon: 'fas fa-hospital',       value: 'PMC', label: 'Partnership' },
         ],
       },
     ],
@@ -436,19 +436,19 @@ const TIMELINE: YearEntry[] = [
           'To help Umed Pariwar, <strong>Khinvasara Pariwar Trust in association with Mahati Powerlines and M/s G.V Lele</strong> supplied and installed 200 KVA Transformer and HT equipment.',
         ],
         photos: [
-          { src: image2020_001, alt: 'Umed Parivar Meeting',       caption: 'Meeting at Umed Parivar' },
-          { src: image2020_002, alt: 'Transformer Installation',    caption: 'Transformer installation project' },
-          { src: image2020_003, alt: 'Transformer Setup',           caption: 'Setting up electrical transformer' },
-          { src: image2020_004, alt: 'Members at Umed Parivar',     caption: 'Members gathering at Umed Parivar' },
-          { src: image2020_005, alt: 'Review Meeting',              caption: 'Review meeting with team members' },
-          { src: image2020_006, alt: 'Members with Umed Team',      caption: 'Members collaborating with Umed team' },
-          { src: image2020_007, alt: 'Family Members',              caption: 'Family members participation' },
-          { src: image2020_thanks, alt: 'Thanks Note',              caption: 'Appreciation and thanks' },
+          { src: image2020_001, alt: 'Umed Parivar Meeting',    caption: 'Meeting at Umed Parivar' },
+          { src: image2020_002, alt: 'Transformer Installation', caption: 'Transformer installation project' },
+          { src: image2020_003, alt: 'Transformer Setup',        caption: 'Setting up electrical transformer' },
+          { src: image2020_004, alt: 'Members at Umed Parivar', caption: 'Members gathering at Umed Parivar' },
+          { src: image2020_005, alt: 'Review Meeting',           caption: 'Review meeting with team members' },
+          { src: image2020_006, alt: 'Members with Umed Team',  caption: 'Members collaborating with Umed team' },
+          { src: image2020_007, alt: 'Family Members',           caption: 'Family members participation' },
+          { src: image2020_thanks, alt: 'Thanks Note',           caption: 'Appreciation and thanks' },
         ],
         stats: [
-          { icon: 'fas fa-bolt',        value: '200 KVA',    label: 'Transformer Capacity' },
-          { icon: 'fas fa-rupee-sign',  value: '₹7 Lakhs',   label: 'Project Cost' },
-          { icon: 'fas fa-handshake',   value: '3',          label: 'Partner Organizations' },
+          { icon: 'fas fa-bolt',       value: '200 KVA',  label: 'Transformer Capacity' },
+          { icon: 'fas fa-rupee-sign', value: '₹7 Lakhs', label: 'Project Cost' },
+          { icon: 'fas fa-handshake',  value: '3',         label: 'Partner Organizations' },
         ],
       },
       {
@@ -520,10 +520,10 @@ const TIMELINE: YearEntry[] = [
           { src: image2018_pudhari, alt: 'Pudhari Media Coverage', caption: 'Media coverage – Pudhari' },
         ],
         stats: [
-          { icon: 'fas fa-solar-panel', value: '3.25 Kw',  label: 'Power Generation' },
-          { icon: 'fas fa-rupee-sign',  value: '₹45,000',  label: 'Annual Savings' },
-          { icon: 'fas fa-tree',        value: '2500',      label: 'Trees Saved' },
-          { icon: 'fas fa-clock',       value: '25 Years',  label: 'System Life' },
+          { icon: 'fas fa-solar-panel', value: '3.25 Kw', label: 'Power Generation' },
+          { icon: 'fas fa-rupee-sign',  value: '₹45,000', label: 'Annual Savings' },
+          { icon: 'fas fa-tree',        value: '2500',     label: 'Trees Saved' },
+          { icon: 'fas fa-clock',       value: '25 Years', label: 'System Life' },
         ],
       },
     ],
@@ -563,35 +563,35 @@ const TIMELINE: YearEntry[] = [
           },
         ],
         photos: [
-          { src: image2016_001, alt: 'Shet Tale Project',       caption: 'Shet Tale construction site' },
-          { src: image2016_002, alt: 'Excavation work',         caption: 'Excavation work in progress' },
-          { src: image2016_003, alt: 'Farm pond digging',       caption: 'Farm pond digging' },
-          { src: image2016_004, alt: 'Construction progress',   caption: 'Construction progress' },
-          { src: image2016_004b, alt: 'Construction progress',  caption: 'Construction progress' },
-          { src: image2016_004c, alt: 'Construction progress',  caption: 'Construction progress' },
-          { src: image2016_004d, alt: 'Construction progress',  caption: 'Construction progress' },
-          { src: image2016_004e, alt: 'Construction progress',  caption: 'Construction progress' },
-          { src: image2016_005, alt: 'Site overview',           caption: 'Aerial view of the site' },
-          { src: image2016_007, alt: 'Pond formation',          caption: 'Pond formation taking shape' },
-          { src: image2016_009, alt: 'Water storage area',      caption: 'Water storage area preparation' },
-          { src: image2016_010, alt: 'Community involvement',   caption: 'Community involvement in project' },
-          { src: image2016_011, alt: 'Construction milestone',  caption: 'Construction milestone achieved' },
-          { src: image2016_002a, alt: 'Construction progress',  caption: 'Construction progress' },
-          { src: image2016_013, alt: 'Landscape transformation',caption: 'Landscape transformation' },
-          { src: image2016_014, alt: 'Water collection area',   caption: 'Water collection area' },
-          { src: image2016_015, alt: 'Project site',            caption: 'Project site at Shantivan' },
-          { src: image2016_016, alt: 'Farm surroundings',       caption: 'Farm surroundings and terrain' },
-          { src: image2016_017, alt: 'Completed structure',     caption: 'Completed pond structure' },
-          { src: image2016_018, alt: 'Water retention',         caption: 'Water retention capability' },
-          { src: image2016_019, alt: 'Beneficiary farm',        caption: 'Beneficiary farm area' },
-          { src: image2016_020, alt: 'Drought solution',        caption: 'A solution against drought' },
-          { src: image2016_021, alt: 'Agricultural support',    caption: 'Supporting agricultural needs' },
+          { src: image2016_001,  alt: 'Shet Tale Project',        caption: 'Shet Tale construction site' },
+          { src: image2016_002,  alt: 'Excavation work',          caption: 'Excavation work in progress' },
+          { src: image2016_003,  alt: 'Farm pond digging',        caption: 'Farm pond digging' },
+          { src: image2016_004,  alt: 'Construction progress',    caption: 'Construction progress' },
+          { src: image2016_004b, alt: 'Construction progress',    caption: 'Construction progress' },
+          { src: image2016_004c, alt: 'Construction progress',    caption: 'Construction progress' },
+          { src: image2016_004d, alt: 'Construction progress',    caption: 'Construction progress' },
+          { src: image2016_004e, alt: 'Construction progress',    caption: 'Construction progress' },
+          { src: image2016_005,  alt: 'Site overview',            caption: 'Aerial view of the site' },
+          { src: image2016_007,  alt: 'Pond formation',           caption: 'Pond formation taking shape' },
+          { src: image2016_009,  alt: 'Water storage area',       caption: 'Water storage area preparation' },
+          { src: image2016_010,  alt: 'Community involvement',    caption: 'Community involvement in project' },
+          { src: image2016_011,  alt: 'Construction milestone',   caption: 'Construction milestone achieved' },
+          { src: image2016_002a, alt: 'Construction progress',    caption: 'Construction progress' },
+          { src: image2016_013,  alt: 'Landscape transformation', caption: 'Landscape transformation' },
+          { src: image2016_014,  alt: 'Water collection area',    caption: 'Water collection area' },
+          { src: image2016_015,  alt: 'Project site',             caption: 'Project site at Shantivan' },
+          { src: image2016_016,  alt: 'Farm surroundings',        caption: 'Farm surroundings and terrain' },
+          { src: image2016_017,  alt: 'Completed structure',      caption: 'Completed pond structure' },
+          { src: image2016_018,  alt: 'Water retention',          caption: 'Water retention capability' },
+          { src: image2016_019,  alt: 'Beneficiary farm',         caption: 'Beneficiary farm area' },
+          { src: image2016_020,  alt: 'Drought solution',         caption: 'A solution against drought' },
+          { src: image2016_021,  alt: 'Agricultural support',     caption: 'Supporting agricultural needs' },
         ],
         stats: [
-          { icon: 'fas fa-water',          value: '88 Lakh',   label: 'Litres Storage' },
-          { icon: 'fas fa-rupee-sign',      value: '₹2.85L',    label: 'Project Cost' },
-          { icon: 'fas fa-tractor',         value: 'Farming',   label: 'Resilience' },
-          { icon: 'fas fa-map-marker-alt',  value: 'Arvi, Beed',label: 'Location' },
+          { icon: 'fas fa-water',          value: '88 Lakh',    label: 'Litres Storage' },
+          { icon: 'fas fa-rupee-sign',      value: '₹2.85L',     label: 'Project Cost' },
+          { icon: 'fas fa-tractor',         value: 'Farming',    label: 'Resilience' },
+          { icon: 'fas fa-map-marker-alt',  value: 'Arvi, Beed', label: 'Location' },
         ],
       },
     ],
@@ -613,9 +613,9 @@ const TIMELINE: YearEntry[] = [
           '<strong>Thirty projects</strong> from various streams of science were displayed. A total of <strong>800 students</strong> from standards 5 to 8 visited the exhibition. Volunteers from Shastra Vahini Sanstha explained the projects to the students and enthusiastically answered all their questions.',
         ],
         stats: [
-          { icon: 'fas fa-microscope',    value: '30',     label: 'Projects Displayed' },
-          { icon: 'fas fa-user-graduate', value: '800',    label: 'Students Attended' },
-          { icon: 'fas fa-school',        value: 'Std 5-8',label: 'Target Group' },
+          { icon: 'fas fa-microscope',    value: '30',      label: 'Projects Displayed' },
+          { icon: 'fas fa-user-graduate', value: '800',     label: 'Students Attended' },
+          { icon: 'fas fa-school',        value: 'Std 5-8', label: 'Target Group' },
         ],
       },
       {
@@ -639,9 +639,9 @@ const TIMELINE: YearEntry[] = [
           },
         ],
         stats: [
-          { icon: 'fas fa-female',      value: '300',            label: 'Women & Girls Tested' },
-          { icon: 'fas fa-user-md',     value: 'Dr. Vijay Pitale',label: 'Lead Doctor' },
-          { icon: 'fas fa-handshake',   value: 'Sterlite',       label: 'Partnership' },
+          { icon: 'fas fa-female',    value: '300',             label: 'Women & Girls Tested' },
+          { icon: 'fas fa-user-md',   value: 'Dr. Vijay Pitale', label: 'Lead Doctor' },
+          { icon: 'fas fa-handshake', value: 'Sterlite',        label: 'Partnership' },
         ],
       },
     ],
@@ -692,10 +692,10 @@ const TIMELINE: YearEntry[] = [
           { src: image2014_health_014, alt: 'Camp overview',           caption: 'Overview of the health camp' },
         ],
         stats: [
-          { icon: 'fas fa-heart',          value: '3',          label: 'Focus Areas' },
-          { icon: 'fas fa-hospital',       value: 'Ruby Hall',  label: 'Clinic Partnership' },
+          { icon: 'fas fa-heart',          value: '3',              label: 'Focus Areas' },
+          { icon: 'fas fa-hospital',       value: 'Ruby Hall',      label: 'Clinic Partnership' },
           { icon: 'fas fa-user-md',        value: 'Dr. P.K. Grant', label: 'Lead Doctor' },
-          { icon: 'fas fa-map-marker-alt', value: 'Dimbhe',     label: 'Village' },
+          { icon: 'fas fa-map-marker-alt', value: 'Dimbhe',         label: 'Village' },
         ],
       },
       {
@@ -710,9 +710,9 @@ const TIMELINE: YearEntry[] = [
           'Exhibition inauguration was done by <strong>Dr. Sanjay Chordia</strong> (Founder and Chairman, Suryadatta Management Inst). More than <strong>550 people</strong> visited over two days.',
         ],
         stats: [
-          { icon: 'fas fa-users',       value: '550+',    label: 'Visitors' },
-          { icon: 'fas fa-calendar-day',value: '2 Days',  label: 'Duration' },
-          { icon: 'fas fa-lightbulb',   value: 'Multiple',label: 'Project Streams' },
+          { icon: 'fas fa-users',        value: '550+',     label: 'Visitors' },
+          { icon: 'fas fa-calendar-day', value: '2 Days',   label: 'Duration' },
+          { icon: 'fas fa-lightbulb',    value: 'Multiple', label: 'Project Streams' },
         ],
       },
     ],
@@ -749,32 +749,32 @@ const TIMELINE: YearEntry[] = [
           },
         ],
         photos: [
-          { src: image2013_hb_001, alt: 'Haemoglobin Camp 2013', caption: 'Haemoglobin check-up camp' },
-          { src: image2013_hb_002, alt: 'Medical team',           caption: 'Medical team at the camp' },
-          { src: image2013_hb_003, alt: 'Patient registration',   caption: 'Patient registration process' },
-          { src: image2013_hb_004, alt: 'Blood sample collection',caption: 'Collecting blood samples' },
-          { src: image2013_hb_005, alt: 'Testing process',        caption: 'Testing haemoglobin levels' },
-          { src: image2013_hb_005a, alt: 'Testing 5a',            caption: 'Testing process – Step 1' },
-          { src: image2013_hb_005b, alt: 'Testing 5b',            caption: 'Testing process – Step 2' },
-          { src: image2013_hb_005c, alt: 'Testing 5c',            caption: 'Testing process – Step 3' },
-          { src: image2013_hb_006, alt: 'Health awareness',       caption: 'Health awareness session' },
-          { src: image2013_hb_007, alt: 'Patient consultation',   caption: 'Consultation based on results' },
-          { src: image2013_hb_009, alt: 'Community participation',caption: 'Community members participating' },
-          { src: image2013_hb_010, alt: 'Haemoglobin Camp 2013', caption: 'Haemoglobin check-up camp' },
-          { src: image2013_hb_011, alt: 'Student screening',      caption: 'Girl students being screened' },
-          { src: image2013_hb_012, alt: 'Medical testing',        caption: 'Medical team conducting tests' },
-          { src: image2013_hb_013, alt: 'Health awareness',       caption: 'Health awareness session' },
-          { src: image2013_hb_014, alt: 'Results guidance',       caption: 'Providing guidance on results' },
-          { src: image2013_hb_015, alt: 'Camp activities',        caption: 'Camp activities and care' },
+          { src: image2013_hb_001,  alt: 'Haemoglobin Camp 2013', caption: 'Haemoglobin check-up camp' },
+          { src: image2013_hb_002,  alt: 'Medical team',           caption: 'Medical team at the camp' },
+          { src: image2013_hb_003,  alt: 'Patient registration',   caption: 'Patient registration process' },
+          { src: image2013_hb_004,  alt: 'Blood sample collection',caption: 'Collecting blood samples' },
+          { src: image2013_hb_005,  alt: 'Testing process',        caption: 'Testing haemoglobin levels' },
+          { src: image2013_hb_005a, alt: 'Testing 5a',             caption: 'Testing process – Step 1' },
+          { src: image2013_hb_005b, alt: 'Testing 5b',             caption: 'Testing process – Step 2' },
+          { src: image2013_hb_005c, alt: 'Testing 5c',             caption: 'Testing process – Step 3' },
+          { src: image2013_hb_006,  alt: 'Health awareness',       caption: 'Health awareness session' },
+          { src: image2013_hb_007,  alt: 'Patient consultation',   caption: 'Consultation based on results' },
+          { src: image2013_hb_009,  alt: 'Community participation',caption: 'Community members participating' },
+          { src: image2013_hb_010,  alt: 'Haemoglobin Camp 2013', caption: 'Haemoglobin check-up camp' },
+          { src: image2013_hb_011,  alt: 'Student screening',      caption: 'Girl students being screened' },
+          { src: image2013_hb_012,  alt: 'Medical testing',        caption: 'Medical team conducting tests' },
+          { src: image2013_hb_013,  alt: 'Health awareness',       caption: 'Health awareness session' },
+          { src: image2013_hb_014,  alt: 'Results guidance',       caption: 'Providing guidance on results' },
+          { src: image2013_hb_015,  alt: 'Camp activities',        caption: 'Camp activities and care' },
         ],
         mediaPhotos: [
           { src: image2013_hb_lokmat, alt: 'Lokmat Coverage', caption: 'Media coverage – Lokmat newspaper' },
         ],
         stats: [
-          { icon: 'fas fa-users',     value: '300+',         label: 'Students Tested' },
-          { icon: 'fas fa-user-md',   value: '6',            label: 'Medical Representatives' },
-          { icon: 'fas fa-female',    value: '~290',         label: 'Girls Screened' },
-          { icon: 'fas fa-handshake', value: 'Premraj Munot',label: 'Trust Partnership' },
+          { icon: 'fas fa-users',     value: '300+',          label: 'Students Tested' },
+          { icon: 'fas fa-user-md',   value: '6',             label: 'Medical Representatives' },
+          { icon: 'fas fa-female',    value: '~290',          label: 'Girls Screened' },
+          { icon: 'fas fa-handshake', value: 'Premraj Munot', label: 'Trust Partnership' },
         ],
       },
       {
@@ -799,9 +799,9 @@ const TIMELINE: YearEntry[] = [
           { src: image2013_cfl_010, alt: 'Successful initiative',         caption: 'Successful environmental initiative' },
         ],
         stats: [
-          { icon: 'fas fa-lightbulb', value: '150',        label: 'CFL Bulbs Distributed' },
-          { icon: 'fas fa-home',      value: '50',         label: 'Families Benefited' },
-          { icon: 'fas fa-award',     value: 'Adarsh Gram',label: 'Award Winner Village' },
+          { icon: 'fas fa-lightbulb', value: '150',         label: 'CFL Bulbs Distributed' },
+          { icon: 'fas fa-home',      value: '50',          label: 'Families Benefited' },
+          { icon: 'fas fa-award',     value: 'Adarsh Gram', label: 'Award Winner Village' },
         ],
       },
       {
@@ -815,16 +815,16 @@ const TIMELINE: YearEntry[] = [
         ],
         quote: '<strong>Every scholarship is not just financial aid — it is a step toward empowering dreams and building a brighter tomorrow.</strong>',
         photos: [
-          { src: image2013_sch_001, alt: 'Scholarship Distribution',    caption: 'Scholarship award ceremony' },
-          { src: image2013_sch_002, alt: 'Student receiving scholarship',caption: 'Meritorious student receiving scholarship' },
-          { src: image2013_sch_003, alt: 'Award ceremony',              caption: 'Students at the award ceremony' },
-          { src: image2013_sch_004, alt: 'Scholarship recipients',      caption: 'Recipients with Trust members' },
+          { src: image2013_sch_001, alt: 'Scholarship Distribution',     caption: 'Scholarship award ceremony' },
+          { src: image2013_sch_002, alt: 'Student receiving scholarship', caption: 'Meritorious student receiving scholarship' },
+          { src: image2013_sch_003, alt: 'Award ceremony',               caption: 'Students at the award ceremony' },
+          { src: image2013_sch_004, alt: 'Scholarship recipients',       caption: 'Recipients with Trust members' },
         ],
         stats: [
-          { icon: 'fas fa-user-graduate', value: '5',       label: 'Students Awarded' },
-          { icon: 'fas fa-rupee-sign',    value: '₹2,000',  label: 'Per Student' },
+          { icon: 'fas fa-user-graduate', value: '5',        label: 'Students Awarded' },
+          { icon: 'fas fa-rupee-sign',    value: '₹2,000',   label: 'Per Student' },
           { icon: 'fas fa-female',        value: '4 Girls',  label: 'Empowered' },
-          { icon: 'fas fa-school',        value: 'B.D. Kale',label: 'College' },
+          { icon: 'fas fa-school',        value: 'B.D. Kale', label: 'College' },
         ],
       },
       {
@@ -838,8 +838,8 @@ const TIMELINE: YearEntry[] = [
           'The Trust received a lot of help from B. D. Kale College, Ghodegaon in conducting this event successfully.',
         ],
         stats: [
-          { icon: 'fas fa-lightbulb',     value: '180',      label: 'Bulbs Replaced' },
-          { icon: 'fas fa-map-marker-alt', value: 'Ugalewadi',label: 'Village' },
+          { icon: 'fas fa-lightbulb',      value: '180',       label: 'Bulbs Replaced' },
+          { icon: 'fas fa-map-marker-alt', value: 'Ugalewadi', label: 'Village' },
         ],
       },
     ],
@@ -885,10 +885,10 @@ const TIMELINE: YearEntry[] = [
           { src: image2012_sakal, alt: 'Sakal Media Coverage', caption: 'Media coverage – Sakal newspaper' },
         ],
         stats: [
-          { icon: 'fas fa-lightbulb',   value: '200+',     label: 'Bulbs Replaced' },
-          { icon: 'fas fa-bolt',        value: '75%',      label: 'Energy Savings' },
-          { icon: 'fas fa-map-marker-alt',value: 'Dhakale',label: 'Village' },
-          { icon: 'fas fa-handshake',   value: 'B.D. Kale',label: 'College Support' },
+          { icon: 'fas fa-lightbulb',      value: '200+',     label: 'Bulbs Replaced' },
+          { icon: 'fas fa-bolt',           value: '75%',      label: 'Energy Savings' },
+          { icon: 'fas fa-map-marker-alt', value: 'Dhakale',  label: 'Village' },
+          { icon: 'fas fa-handshake',      value: 'B.D. Kale', label: 'College Support' },
         ],
       },
     ],
@@ -970,34 +970,34 @@ const TIMELINE: YearEntry[] = [
         quote: 'Through this initiative, the Trust strengthened its commitment to <strong>nurturing scientific curiosity, creativity, and confidence</strong> among young learners.',
         pdfLink: { href: jainParamparaPDF, label: 'View Trust News in Jain Parampara' },
         photos: [
-          { src: image2011_sci_001, alt: 'Science Exhibition 2011', caption: 'Science Projects Exhibition' },
-          { src: image2011_sci_002, alt: 'Project display',          caption: 'Science project on display' },
-          { src: image2011_sci_003, alt: 'Student engagement',       caption: 'Students engaging with projects' },
-          { src: image2011_sci_004, alt: 'Optics project',           caption: 'Optics demonstration' },
-          { src: image2011_sci_005, alt: 'Mechanics model',          caption: 'Mechanics model display' },
-          { src: image2011_sci_006, alt: 'Aero-modeling',            caption: 'Aero-modeling demonstration' },
-          { src: image2011_sci_007, alt: 'Exhibition visitors',      caption: 'Visitors exploring exhibits' },
-          { src: image2011_sci_008, alt: 'Electrical projects',      caption: 'Electrical connections project' },
-          { src: image2011_sci_009, alt: 'Interactive learning',     caption: 'Interactive learning session' },
-          { src: image2011_sci_010, alt: 'Student participation',    caption: 'Students participating actively' },
-          { src: image2011_sci_011, alt: 'Exhibition highlights',    caption: 'Exhibition highlights' },
-          { src: image2011_sci_012, alt: 'Geometry models',          caption: 'Geometry and geography models' },
-          { src: image2011_sci_013, alt: 'Hands-on learning',        caption: 'Hands-on science learning' },
-          { src: image2011_sci_014, alt: 'Project explanation',      caption: 'Volunteers explaining projects' },
-          { src: image2011_sci_015, alt: 'Scientific games',         caption: 'Scientific games and activities' },
-          { src: image2011_sci_016, alt: 'Handicraft skills',        caption: 'Handicraft skills demonstration' },
-          { src: image2011_sci_017, alt: 'Exhibition crowd',         caption: 'Enthusiastic crowd at exhibition' },
-          { src: image2011_sci_018, alt: 'Closing ceremony',         caption: 'Exhibition closing ceremony' },
-          { src: image2011_sci_4909, alt: 'Exhibition moment 1',     caption: 'Exhibition highlights' },
-          { src: image2011_sci_4910, alt: 'Exhibition moment 2',     caption: 'Science in action' },
-          { src: image2011_sci_4911, alt: 'Exhibition moment 3',     caption: 'Young minds at work' },
-          { src: image2011_sci_4912, alt: 'Exhibition moment 4',     caption: 'Inspiring curiosity' },
+          { src: image2011_sci_001,  alt: 'Science Exhibition 2011', caption: 'Science Projects Exhibition' },
+          { src: image2011_sci_002,  alt: 'Project display',          caption: 'Science project on display' },
+          { src: image2011_sci_003,  alt: 'Student engagement',       caption: 'Students engaging with projects' },
+          { src: image2011_sci_004,  alt: 'Optics project',           caption: 'Optics demonstration' },
+          { src: image2011_sci_005,  alt: 'Mechanics model',          caption: 'Mechanics model display' },
+          { src: image2011_sci_006,  alt: 'Aero-modeling',            caption: 'Aero-modeling demonstration' },
+          { src: image2011_sci_007,  alt: 'Exhibition visitors',      caption: 'Visitors exploring exhibits' },
+          { src: image2011_sci_008,  alt: 'Electrical projects',      caption: 'Electrical connections project' },
+          { src: image2011_sci_009,  alt: 'Interactive learning',     caption: 'Interactive learning session' },
+          { src: image2011_sci_010,  alt: 'Student participation',    caption: 'Students participating actively' },
+          { src: image2011_sci_011,  alt: 'Exhibition highlights',    caption: 'Exhibition highlights' },
+          { src: image2011_sci_012,  alt: 'Geometry models',          caption: 'Geometry and geography models' },
+          { src: image2011_sci_013,  alt: 'Hands-on learning',        caption: 'Hands-on science learning' },
+          { src: image2011_sci_014,  alt: 'Project explanation',      caption: 'Volunteers explaining projects' },
+          { src: image2011_sci_015,  alt: 'Scientific games',         caption: 'Scientific games and activities' },
+          { src: image2011_sci_016,  alt: 'Handicraft skills',        caption: 'Handicraft skills demonstration' },
+          { src: image2011_sci_017,  alt: 'Exhibition crowd',         caption: 'Enthusiastic crowd at exhibition' },
+          { src: image2011_sci_018,  alt: 'Closing ceremony',         caption: 'Exhibition closing ceremony' },
+          { src: image2011_sci_4909, alt: 'Exhibition moment 1',      caption: 'Exhibition highlights' },
+          { src: image2011_sci_4910, alt: 'Exhibition moment 2',      caption: 'Science in action' },
+          { src: image2011_sci_4911, alt: 'Exhibition moment 3',      caption: 'Young minds at work' },
+          { src: image2011_sci_4912, alt: 'Exhibition moment 4',      caption: 'Inspiring curiosity' },
         ],
         stats: [
-          { icon: 'fas fa-users',       value: '550+',        label: 'Visitors' },
-          { icon: 'fas fa-calendar-day',value: '2 Days',       label: 'Duration' },
-          { icon: 'fas fa-cogs',        value: 'Multiple',     label: 'Project Streams' },
-          { icon: 'fas fa-handshake',   value: 'Shastravahini',label: 'Partner' },
+          { icon: 'fas fa-users',        value: '550+',         label: 'Visitors' },
+          { icon: 'fas fa-calendar-day', value: '2 Days',        label: 'Duration' },
+          { icon: 'fas fa-cogs',         value: 'Multiple',      label: 'Project Streams' },
+          { icon: 'fas fa-handshake',    value: 'Shastravahini', label: 'Partner' },
         ],
       },
       {
@@ -1010,9 +1010,9 @@ const TIMELINE: YearEntry[] = [
           'B.D. Kale College was sanctioned an <strong>E-Library</strong> to provide students access to E-Books and internet resources. To help create the basic infrastructure, the Trust helped by <strong>providing furniture for the E-Library</strong>.',
         ],
         stats: [
-          { icon: 'fas fa-couch',   value: 'Furniture', label: 'Donated' },
-          { icon: 'fas fa-laptop',  value: 'E-Library', label: 'Infrastructure' },
-          { icon: 'fas fa-school',  value: 'B.D. Kale', label: 'College' },
+          { icon: 'fas fa-couch',  value: 'Furniture', label: 'Donated' },
+          { icon: 'fas fa-laptop', value: 'E-Library', label: 'Infrastructure' },
+          { icon: 'fas fa-school', value: 'B.D. Kale', label: 'College' },
         ],
       },
     ],
@@ -1049,41 +1049,41 @@ const TIMELINE: YearEntry[] = [
           },
         ],
         photos: [
-          { src: image2010_001, alt: 'Dental Camp 2010',       caption: 'Dental health camp inauguration' },
-          { src: image2010_002, alt: 'Patient examination',    caption: 'Doctors examining patients' },
-          { src: image2010_003, alt: 'Dental treatment',       caption: 'Dental treatment in progress' },
-          { src: image2010_004, alt: 'Camp activities',        caption: 'Health camp activities' },
-          { src: image2010_005, alt: 'Medical team',           caption: 'Medical team at work' },
-          { src: image2010_006, alt: 'Patient care',           caption: 'Compassionate patient care' },
-          { src: image2010_007, alt: 'Awareness session',      caption: 'Oral health awareness session' },
-          { src: image2010_008, alt: 'Community participation',caption: 'Villagers participating in the camp' },
-          { src: image2010_009, alt: 'Dental checkup',         caption: 'Dental checkup in progress' },
-          { src: image2010_010, alt: 'Treatment setup',        caption: 'Treatment setup at camp' },
-          { src: image2010_011, alt: 'Patient registration',   caption: 'Patient registration desk' },
-          { src: image2010_012, alt: 'Dental procedure',       caption: 'Dental procedure being performed' },
-          { src: image2010_013, alt: 'Camp overview',          caption: 'Overview of the dental camp' },
-          { src: image2010_014, alt: 'Expert consultation',    caption: 'Expert dental consultation' },
-          { src: image2010_015, alt: 'Patient queue',          caption: 'Patients waiting for checkup' },
-          { src: image2010_016, alt: 'Diagnostic session',     caption: 'Diagnostic session' },
-          { src: image2010_017, alt: 'Camp gathering',         caption: 'Gathering at dental camp' },
-          { src: image2010_018, alt: 'Health awareness',       caption: 'Health awareness drive' },
-          { src: image2010_019, alt: 'Dental equipment',       caption: 'Advanced dental equipment' },
-          { src: image2010_020, alt: 'Team coordination',      caption: 'Medical team coordination' },
-          { src: image2010_021, alt: 'Treatment area',         caption: 'Treatment area setup' },
-          { src: image2010_022, alt: 'Patient interaction',    caption: 'Doctor-patient interaction' },
-          { src: image2010_023, alt: 'Camp success',           caption: 'Successful camp moments' },
-          { src: image2010_024, alt: 'Community response',     caption: 'Overwhelming community response' },
-          { src: image2010_025, alt: 'Dental care',            caption: 'Dental care for all ages' },
-          { src: image2010_026, alt: 'Camp highlights',        caption: 'Camp highlights' },
-          { src: image2010_027, alt: 'Closing moments',        caption: 'Camp closing moments' },
-          { src: image2010_028, alt: 'Group photo',            caption: 'Group photo of team and participants' },
-          { src: image2010_picture1, alt: 'Camp poster',       caption: 'Dental camp poster' },
+          { src: image2010_001,      alt: 'Dental Camp 2010',        caption: 'Dental health camp inauguration' },
+          { src: image2010_002,      alt: 'Patient examination',     caption: 'Doctors examining patients' },
+          { src: image2010_003,      alt: 'Dental treatment',        caption: 'Dental treatment in progress' },
+          { src: image2010_004,      alt: 'Camp activities',         caption: 'Health camp activities' },
+          { src: image2010_005,      alt: 'Medical team',            caption: 'Medical team at work' },
+          { src: image2010_006,      alt: 'Patient care',            caption: 'Compassionate patient care' },
+          { src: image2010_007,      alt: 'Awareness session',       caption: 'Oral health awareness session' },
+          { src: image2010_008,      alt: 'Community participation', caption: 'Villagers participating in the camp' },
+          { src: image2010_009,      alt: 'Dental checkup',          caption: 'Dental checkup in progress' },
+          { src: image2010_010,      alt: 'Treatment setup',         caption: 'Treatment setup at camp' },
+          { src: image2010_011,      alt: 'Patient registration',    caption: 'Patient registration desk' },
+          { src: image2010_012,      alt: 'Dental procedure',        caption: 'Dental procedure being performed' },
+          { src: image2010_013,      alt: 'Camp overview',           caption: 'Overview of the dental camp' },
+          { src: image2010_014,      alt: 'Expert consultation',     caption: 'Expert dental consultation' },
+          { src: image2010_015,      alt: 'Patient queue',           caption: 'Patients waiting for checkup' },
+          { src: image2010_016,      alt: 'Diagnostic session',      caption: 'Diagnostic session' },
+          { src: image2010_017,      alt: 'Camp gathering',          caption: 'Gathering at dental camp' },
+          { src: image2010_018,      alt: 'Health awareness',        caption: 'Health awareness drive' },
+          { src: image2010_019,      alt: 'Dental equipment',        caption: 'Advanced dental equipment' },
+          { src: image2010_020,      alt: 'Team coordination',       caption: 'Medical team coordination' },
+          { src: image2010_021,      alt: 'Treatment area',          caption: 'Treatment area setup' },
+          { src: image2010_022,      alt: 'Patient interaction',     caption: 'Doctor-patient interaction' },
+          { src: image2010_023,      alt: 'Camp success',            caption: 'Successful camp moments' },
+          { src: image2010_024,      alt: 'Community response',      caption: 'Overwhelming community response' },
+          { src: image2010_025,      alt: 'Dental care',             caption: 'Dental care for all ages' },
+          { src: image2010_026,      alt: 'Camp highlights',         caption: 'Camp highlights' },
+          { src: image2010_027,      alt: 'Closing moments',         caption: 'Camp closing moments' },
+          { src: image2010_028,      alt: 'Group photo',             caption: 'Group photo of team and participants' },
+          { src: image2010_picture1, alt: 'Camp poster',             caption: 'Dental camp poster' },
         ],
         mediaPhotos: [
-          { src: image2010_sakal_25apr,  alt: 'Sakal Coverage 25th April', caption: 'Media coverage – Sakal, 25th April 2010' },
-          { src: image2010_sakal_3may,   alt: 'Sakal Coverage 3rd May',    caption: 'Media coverage – Sakal, 3rd May 2010' },
-          { src: image2010_lokmat_27apr, alt: 'Lokmat Coverage 27th April',caption: 'Media coverage – Lokmat, 27th April 2010' },
-          { src: image2010_lokmat_3may,  alt: 'Lokmat Coverage 3rd May',   caption: 'Media coverage – Lokmat, 3rd May 2010' },
+          { src: image2010_sakal_25apr,  alt: 'Sakal Coverage 25th April',  caption: 'Media coverage – Sakal, 25th April 2010' },
+          { src: image2010_sakal_3may,   alt: 'Sakal Coverage 3rd May',     caption: 'Media coverage – Sakal, 3rd May 2010' },
+          { src: image2010_lokmat_27apr, alt: 'Lokmat Coverage 27th April', caption: 'Media coverage – Lokmat, 27th April 2010' },
+          { src: image2010_lokmat_3may,  alt: 'Lokmat Coverage 3rd May',    caption: 'Media coverage – Lokmat, 3rd May 2010' },
         ],
         stats: [
           { icon: 'fas fa-users',         value: '315+', label: 'Patients Examined' },
@@ -1108,9 +1108,9 @@ const TIMELINE: YearEntry[] = [
           { src: image2010_thanks,    alt: 'Thanking Letter',         caption: 'Letter of appreciation from B.D. Kale College' },
         ],
         stats: [
-          { icon: 'fas fa-desktop',        value: '10',       label: 'Benches Donated' },
-          { icon: 'fas fa-graduation-cap', value: 'B.C.S.',   label: 'Degree Support' },
-          { icon: 'fas fa-school',         value: 'B.D. Kale',label: 'College' },
+          { icon: 'fas fa-desktop',        value: '10',        label: 'Benches Donated' },
+          { icon: 'fas fa-graduation-cap', value: 'B.C.S.',    label: 'Degree Support' },
+          { icon: 'fas fa-school',         value: 'B.D. Kale', label: 'College' },
         ],
       },
     ],
@@ -1158,10 +1158,10 @@ const TIMELINE: YearEntry[] = [
           },
         ],
         photos: [
-          { src: image2009_002, alt: 'Health Camp 2009',   caption: 'Free Diabetes & Heart Disease Health Camp' },
-          { src: image2009_003, alt: 'Medical examination',caption: 'Doctors examining patients at camp' },
-          { src: image2009_004, alt: 'ECG Testing',         caption: 'ECG testing facility at the camp' },
-          { src: image2009_006, alt: 'Camp activities',     caption: 'Health camp activities and patient care' },
+          { src: image2009_002, alt: 'Health Camp 2009',    caption: 'Free Diabetes & Heart Disease Health Camp' },
+          { src: image2009_003, alt: 'Medical examination', caption: 'Doctors examining patients at camp' },
+          { src: image2009_004, alt: 'ECG Testing',          caption: 'ECG testing facility at the camp' },
+          { src: image2009_006, alt: 'Camp activities',      caption: 'Health camp activities and patient care' },
         ],
         mediaPhotos: [
           { src: image2009_lokmat, alt: 'Lokmat Media Coverage', caption: 'Media coverage – Lokmat newspaper' },
@@ -1237,14 +1237,14 @@ const TIMELINE: YearEntry[] = [
           },
         ],
         photos: [
-          { src: image2008_001, alt: 'Solar Panel Installation',  caption: 'Installing solar panels at the school' },
-          { src: image2008_002, alt: 'Inauguration Ceremony',     caption: 'Independence Day inauguration ceremony' },
-          { src: image2008_003, alt: 'Solar System Setup',        caption: '3.25 Kw solar power generation system' },
+          { src: image2008_001, alt: 'Solar Panel Installation', caption: 'Installing solar panels at the school' },
+          { src: image2008_002, alt: 'Inauguration Ceremony',    caption: 'Independence Day inauguration ceremony' },
+          { src: image2008_003, alt: 'Solar System Setup',       caption: '3.25 Kw solar power generation system' },
         ],
         stats: [
-          { icon: 'fas fa-wheat-awn',    value: '1 Month',   label: 'Food Grains Supply' },
-          { icon: 'fas fa-home',         value: 'St. John\'s',label: 'Home for Women & Children' },
-          { icon: 'fas fa-hands-helping',value: 'Rehab',     label: 'Support' },
+          { icon: 'fas fa-wheat-awn',     value: '1 Month',       label: 'Food Grains Supply' },
+          { icon: 'fas fa-home',          value: 'St. John\'s',   label: 'Home for Women & Children' },
+          { icon: 'fas fa-hands-helping', value: 'Rehab',         label: 'Support' },
         ],
       },
       {
@@ -1262,16 +1262,16 @@ const TIMELINE: YearEntry[] = [
             title: 'Beneficiary Details',
             icon: 'fas fa-info-circle',
             details: [
-              { label: 'School',    value: 'Jeevan Shikshan Mandir' },
-              { label: 'Location',  value: 'Ghodegaon, Tal-Ambegaon, Maharashtra' },
-              { label: 'Donation',  value: 'Chairs for School Library' },
+              { label: 'School',   value: 'Jeevan Shikshan Mandir' },
+              { label: 'Location', value: 'Ghodegaon, Tal-Ambegaon, Maharashtra' },
+              { label: 'Donation', value: 'Chairs for School Library' },
             ],
           },
         ],
         stats: [
-          { icon: 'fas fa-chair',     value: 'Chairs',        label: 'Donated' },
-          { icon: 'fas fa-book-open', value: 'Library',       label: 'Infrastructure' },
-          { icon: 'fas fa-school',    value: 'Jeevan Shikshan',label: 'Mandir School' },
+          { icon: 'fas fa-chair',     value: 'Chairs',          label: 'Donated' },
+          { icon: 'fas fa-book-open', value: 'Library',         label: 'Infrastructure' },
+          { icon: 'fas fa-school',    value: 'Jeevan Shikshan', label: 'Mandir School' },
         ],
       },
     ],
@@ -1279,22 +1279,16 @@ const TIMELINE: YearEntry[] = [
 ];
 
 // ============================================================
-// SHARED GALLERY DATA (for photo-only sections still referenced
-// by galleryKey – kept for any inline usage)
-// ============================================================
-// (All photos are now embedded in TIMELINE above)
-
-// ============================================================
 // HELPER: category → colour pill
 // ============================================================
 const CATEGORY_COLORS: Record<string, string> = {
-  Health:              'bg-red-100 text-red-700',
-  Environment:         'bg-green-100 text-green-700',
-  Education:           'bg-blue-100 text-blue-700',
-  'Community Service': 'bg-purple-100 text-purple-700',
-  'Social & Environment': 'bg-teal-100 text-teal-700',
+  Health:                    'bg-red-100 text-red-700',
+  Environment:               'bg-green-100 text-green-700',
+  Education:                 'bg-blue-100 text-blue-700',
+  'Community Service':       'bg-purple-100 text-purple-700',
+  'Social & Environment':    'bg-teal-100 text-teal-700',
   'Environment & Education': 'bg-emerald-100 text-emerald-700',
-  'Education & Health': 'bg-indigo-100 text-indigo-700',
+  'Education & Health':      'bg-indigo-100 text-indigo-700',
 };
 
 function categoryColor(cat: string) {
@@ -1413,7 +1407,6 @@ function StatsRow({ stats }: { stats: Stat[] }) {
   );
 }
 
-/** Renders a single initiative card */
 function InitiativeCard({
   initiative,
   isFirst,
@@ -1431,7 +1424,6 @@ function InitiativeCard({
 
   return (
     <div className={`sub-event${isFirst ? '' : ' sub-event--border'}`}>
-      {/* Header row */}
       <div className="initiative-header">
         <span className={`initiative-category-pill ${categoryColor(category)}`}>
           <i className={categoryIcon} /> {category}
@@ -1445,38 +1437,30 @@ function InitiativeCard({
         <i className={categoryIcon} /> {title}
       </h4>
 
-      {/* Paragraphs */}
       {description.map((para, i) => (
         <p key={i} dangerouslySetInnerHTML={{ __html: para }} />
       ))}
 
-      {/* Info boxes */}
       {infoBoxes?.map((box, i) => <InfoBoxBlock key={i} box={box} />)}
 
-      {/* Quote */}
       {quote && <p className="event-quote" dangerouslySetInnerHTML={{ __html: quote }} />}
 
-      {/* PDF link */}
       {pdfLink && (
         <a href={pdfLink.href} target="_blank" rel="noopener noreferrer" className="gratitude-document">
           <i className="fas fa-file-pdf" /> {pdfLink.label}
         </a>
       )}
 
-      {/* Featured single photo */}
       {featuredPhoto && <FeaturedPhoto photo={featuredPhoto} onSelect={onSelect} />}
 
-      {/* Photo gallery */}
       {photos && photos.length > 0 && (
         <PhotoGrid photos={photos} title="Event Photographs" onSelect={onSelect} />
       )}
 
-      {/* Media coverage gallery */}
       {mediaPhotos && mediaPhotos.length > 0 && (
         <PhotoGrid photos={mediaPhotos} title="Media Coverage" onSelect={onSelect} />
       )}
 
-      {/* Stats */}
       <StatsRow stats={stats} />
     </div>
   );
@@ -1540,7 +1524,7 @@ const Events = () => {
           </p>
         </div>
 
-        {/* Year picker */}
+        {/* ── Year picker ── */}
         <div className="years-grid">
           {TIMELINE.map(({ year, label }) => (
             <span
@@ -1556,13 +1540,10 @@ const Events = () => {
         {/* Active year card */}
         {activeEntry && (
           <div className="featured-event">
-            {/* Card header */}
             <div className="featured-event-header">
               <span className="event-year">Year {activeEntry.year}</span>
               <h3>
-                {isMultiple
-                  ? 'Multiple Initiatives'
-                  : initiatives[0]?.title}
+                {isMultiple ? 'Multiple Initiatives' : initiatives[0]?.title}
               </h3>
               {isMultiple ? (
                 <span className="category">
@@ -1577,12 +1558,10 @@ const Events = () => {
               )}
             </div>
 
-            {/* Card body */}
             <div className="featured-event-content">
               {initiatives.map((initiative, idx) => (
                 <div key={initiative.id}>
                   {isMultiple && idx > 0 && <div className="event-divider" />}
-                  {/* Numbering prefix only when multiple */}
                   {isMultiple && (
                     <p className="initiative-number">
                       <strong>{idx + 1}. {initiative.title}</strong>
@@ -1603,8 +1582,79 @@ const Events = () => {
       {/* Lightbox */}
       <Lightbox photo={lightboxPhoto} onClose={() => setLightboxPhoto(null)} />
 
-      {/* Styles */}
+      {/* ── Styles ── */}
       <style>{`
+
+        /* ============================================================
+           YEAR PICKER — horizontal scroll on desktop, vertical on phone
+           ============================================================ */
+
+        /* Base (mobile-first): vertical scrollable list */
+        .years-grid {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          overflow-x: visible;
+          overflow-y: auto;
+          max-height: 280px;
+          gap: 0.5rem;
+          margin-bottom: 1.75rem;
+          padding-right: 4px;
+          padding-bottom: 0;
+          scroll-snap-type: y mandatory;
+          scrollbar-width: thin;
+          scrollbar-color: var(--primary) var(--border);
+          justify-content: flex-start;
+        }
+
+        .years-grid::-webkit-scrollbar {
+          width: 4px;
+          height: 4px;
+        }
+
+        .years-grid::-webkit-scrollbar-track {
+          background: var(--border);
+          border-radius: 2px;
+        }
+
+        .years-grid::-webkit-scrollbar-thumb {
+          background: var(--primary-light);
+          border-radius: 2px;
+        }
+
+        .years-grid::-webkit-scrollbar-thumb:hover {
+          background: var(--primary);
+        }
+
+        .year-badge {
+          flex-shrink: 0;
+          scroll-snap-align: start;
+          width: 100%;
+          text-align: center;
+          justify-content: center;
+        }
+
+        /* Laptop / desktop (768px+): switch to horizontal scroll */
+        @media (min-width: 768px) {
+          .years-grid {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-height: none;
+            padding-right: 0;
+            padding-bottom: 6px;
+            scroll-snap-type: x mandatory;
+            justify-content: flex-start;
+          }
+
+          .year-badge {
+            width: auto;
+            text-align: left;
+            justify-content: flex-start;
+          }
+        }
+
         /* ── Initiative header row ── */
         .initiative-header {
           display: flex;
@@ -1854,20 +1904,6 @@ const Events = () => {
           border: none;
           border-top: 2px dashed var(--border);
           margin: 2rem 0;
-        }
-
-        /* ── Sub-category badge (legacy, kept for compat) ── */
-        .sub-category {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          background: rgba(15,76,117,0.08);
-          color: var(--primary);
-          padding: 3px 10px;
-          border-radius: 50px;
-          font-size: 0.72rem;
-          font-weight: 600;
-          margin-bottom: 0.75rem;
         }
 
         /* ── Sub-event title ── */

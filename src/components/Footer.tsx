@@ -89,7 +89,7 @@ const Footer = () => {
         {/* ── CONTACT ── */}
         <div className="footer-column footer-contact">
           <h4>Contact Info</h4>
-          <p><i className="fas fa-map-marker-alt"></i> 'Aastha', Madhukunj Hsg Society, Panchavati, Pune-08</p>
+          <p><i className="fas fa-map-marker-alt"></i> Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
           <p><i className="fas fa-phone-alt"></i> +91 94226 46691</p>
           <p><i className="fas fa-envelope"></i> info@khinvasaratrust.org</p>
           <p><i className="fas fa-globe"></i> www.khinvasaratrust.org</p>
