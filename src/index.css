@@ -148,7 +148,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Right controls */
 .nav-right-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-
+@media (max-width: 768px) {
+  .desktop-donate-btn {
+    display: none !important;
+  }
+}
 .desktop-lang-switcher { display: none; }
 .mobile-lang-switcher  { display: block; }
 .donate-btn { display: none; }
