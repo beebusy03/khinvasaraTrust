@@ -20,7 +20,6 @@ const health_2020_pmcares = '/2020PMCares/image152.jpg';
 
 // Education Category Images
 
-const edu_2009_watercooler = '/2009/001 2009 Water cooler.jpg';
 const edu_2010_bench1 = '/2010Benchesdonation/15th Aug Snap 1.jpg';
 const edu_2010_bench2 = '/2010Benchesdonation/15th Aug Snap 2.jpg';
 const edu_2011_science = '/2011Science/005.jpg';
