@@ -65,7 +65,6 @@ function App() {
       <Navbar onDonateClick={openDonateModal} />
       <Hero onDonateClick={openDonateModal} />
       <About />
-      <Membership />
       <Events />
       <Media />
       <Gallery />
