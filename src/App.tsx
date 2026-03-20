@@ -3,7 +3,6 @@ import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Membership from './components/Membership';
 import Events from './components/Events';
 import Media from './components/Media';
 import Gallery from './components/Gallery';
