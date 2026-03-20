@@ -36,15 +36,20 @@ const VideoSection = () => {
                 tabIndex={0}
                 onKeyDown={(e) => e.key === 'Enter' && handlePlay()}
               >
-                {/* YouTube thumbnail */}
-                <img
-                  src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
-                  alt="Video thumbnail"
-                  className="video-thumb-img"
-                  onError={(e) => {
-                    // Fallback to hqdefault if maxres unavailable
-                    (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`;
-                  }}
+                {/*
+                  Use a no-cookie embed in preview mode (no autoplay).
+                  This renders YouTube's own thumbnail — no CORS issues.
+                  The `?fs=0&controls=0&disablekb=1` flags hide UI chrome.
+                  pointer-events:none prevents clicks reaching the iframe
+                  so our overlay intercepts them instead.
+                */}
+                <iframe
+                  className="video-preview-iframe"
+                  src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=0&rel=0&modestbranding=1&fs=0&controls=0&disablekb=1`}
+                  title="Video preview"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  tabIndex={-1}
+                  aria-hidden="true"
                 />
 
                 {/* Dark overlay */}
@@ -69,7 +74,7 @@ const VideoSection = () => {
               <iframe
                 ref={iframeRef}
                 className="video-iframe"
-                src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
                 title="Khinvasara Parivar Trust – Our Work"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -146,17 +151,14 @@ const VideoSection = () => {
           justify-content: center;
         }
 
-        .video-thumb-img {
+        /* Preview iframe acts as the thumbnail — no pointer events so overlay stays clickable */
+        .video-preview-iframe {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-
-        .video-thumbnail-overlay:hover .video-thumb-img {
-          transform: scale(1.03);
+          border: none;
+          pointer-events: none;
         }
 
         .video-overlay {
@@ -203,7 +205,7 @@ const VideoSection = () => {
         .play-btn i {
           font-size: 1.5rem;
           color: var(--primary);
-          margin-left: 4px; /* optical centering for play icon */
+          margin-left: 4px;
         }
 
         .video-thumbnail-overlay:hover .play-btn {
