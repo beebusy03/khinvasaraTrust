@@ -1,30 +1,31 @@
 import Tlogo from '../assets/Tlogo.png';
+import I18nText from './I18nText';
 
-// Map focus areas to their event year anchors
+// Map focus areas to their Gallery filter category
 const focusAreaLinks = [
-  { icon: 'fas fa-graduation-cap', label: 'Education', year: '2023' },
-  { icon: 'fas fa-heartbeat',      label: 'Healthcare', year: '2021' },
-  { icon: 'fas fa-leaf',           label: 'Environmental Care', year: '2025' },
-  { icon: 'fas fa-hands-helping',  label: 'Social Welfare', year: '2020' },
-  { icon: 'fas fa-home',           label: 'Natural Calamity Relief', year: '2018' },
+  { icon: 'fas fa-graduation-cap', label: 'Education',              filter: 'Education' },
+  { icon: 'fas fa-heartbeat',      label: 'Healthcare',             filter: 'Health' },
+  { icon: 'fas fa-leaf',           label: 'Environmental Care',     filter: 'Environment' },
+  { icon: 'fas fa-hands-helping',  label: 'Social Welfare',         filter: 'Community Service' },
+  { icon: 'fas fa-home',           label: 'Natural Calamity Relief', filter: 'Community Service' },
 ];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const handleFocusAreaClick = (e: React.MouseEvent<HTMLAnchorElement>, year: string) => {
+  const handleFocusAreaClick = (e: React.MouseEvent<HTMLAnchorElement>, filter: string) => {
     e.preventDefault();
 
-    const eventsSection = document.querySelector('#events');
-    if (eventsSection) {
-      eventsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const gallerySection = document.querySelector('#gallery');
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     setTimeout(() => {
-      const badges = document.querySelectorAll('.year-badge');
-      badges.forEach((badge) => {
-        if (badge.textContent?.trim().startsWith(year)) {
-          (badge as HTMLElement).click();
+      const filters = document.querySelectorAll('.gallery-filter');
+      filters.forEach((el) => {
+        if (el.textContent?.trim().toLowerCase().startsWith(filter.toLowerCase())) {
+          (el as HTMLElement).click();
         }
       });
     }, 800);
@@ -40,19 +41,21 @@ const Footer = () => {
               <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
             </div>
             <div className="logo-text-container">
-              <span className="logo-text">Khinvasara Trust</span>
-              <span className="logo-tagline">Serving Since 2007</span>
+              <span className="logo-text notranslate" translate="no">
+                <I18nText en="Khinvasara Trust" mr="खिंवासरा ट्रस्ट" />
+              </span>
+              <span className="logo-tagline notranslate" translate="no">Serving Since 2007</span>
             </div>
           </a>
           <p>
-            Khinvasara Family (Ghodegaonkar) Welfare Nidhi — A registered public charitable trust
+            <I18nText
+              en="Khinvasara Family (Ghodegaonkar) Welfare Nidhi"
+              mr="खिंवासरा फॅमिली (घोडेगांवकर) वेलफेअर निधी"
+            /> — A registered public charitable trust
             dedicated to serving humanity through comprehensive welfare initiatives in education,
             health, and community development.
           </p>
-          <div className="social-links">
-            <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-            <a href="#" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
-          </div>
+
         </div>
 
         {/* ── QUICK LINKS ── */}
@@ -72,12 +75,12 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Our Focus Areas</h4>
           <ul className="footer-links footer-focus-links">
-            {focusAreaLinks.map(({ icon, label, year }) => (
+            {focusAreaLinks.map(({ icon, label, filter }) => (
               <li key={label}>
                 <a
-                  href="#events"
-                  onClick={(e) => handleFocusAreaClick(e, year)}
-                  title={`View ${label} events`}
+                  href="#gallery"
+                  onClick={(e) => handleFocusAreaClick(e, filter)}
+                  title={`View ${label} gallery`}
                 >
                   <i className={icon}></i> {label}
                 </a>
@@ -89,7 +92,7 @@ const Footer = () => {
         {/* ── CONTACT ── */}
         <div className="footer-column footer-contact">
           <h4>Contact Info</h4>
-          <p><i className="fas fa-map-marker-alt"></i> Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
+          <p><i className="fas fa-map-marker-alt"></i> C/O Onyx Automation Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
           <p><i className="fas fa-phone-alt"></i> +91 94226 46691</p>
           <p><i className="fas fa-envelope"></i> info@khinvasaratrust.org</p>
           <p><i className="fas fa-globe"></i> www.khinvasaratrust.org</p>

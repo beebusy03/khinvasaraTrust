@@ -1,3 +1,25 @@
+const leaders: { name: string; role?: string }[] = [
+  { name: "Shantilal Khinvasara", role: "Chairman" },
+  { name: "Rahul Khinvasara", role: "Secretary" },
+  { name: "Sachin Khinvasara", role: "Treasurer" },
+  { name: "Sanket Khinvasara", role: "Committee Member" },
+  { name: "Nilesh Khinvasara", role: "Committee Member" },
+  { name: "Nayan Khinvasara", role: "Committee Member" },
+  { name: "Swapnil Khinvasara", role: "Committee Member" },
+  { name: "Arun Khinvasara", role: "Member" },
+  { name: "Vikas Khinvasara", role: "Member" },
+  { name: "Parag Khinvasara", role: "Member" },
+  { name: "Nandini Khinvasara", role: "Member" },
+  { name: "Tushar Khinvasara", role: "Member" },
+  { name: "Meena Pokharna", role: "Member" },
+  { name: "Abhay Pokharna", role: "Member" },
+  { name: "Sheetal Gugale", role: "Member" },
+  { name: "Yogesh Meher", role: "Member" },
+  { name: "Anjali Lodha", role: "Member" },
+  { name: "Shreyas Khinvasara", role: "Member" },
+  { name: "Sunanda Kale", role: "Member" },
+];
+
 const Leaders = () => {
   return (
     <section className="leaders">
@@ -7,20 +29,12 @@ const Leaders = () => {
         <p>Visionaries dedicated to making a difference in society</p>
       </div>
       <div className="leaders-container">
-        <div className="leader-card">
-          <div className="leader-avatar">
-            <i className="fas fa-user"></i>
+        {leaders.map((leader) => (
+          <div className="leader-card" key={leader.name}>
+            <h3>{leader.name}</h3>
+            {leader.role && <p className="role">{leader.role}</p>}
           </div>
-          <h3>Mr. Shantilal Khinvasara</h3>
-          <p className="role">Founder & Trustee</p>
-        </div>
-        <div className="leader-card">
-          <div className="leader-avatar">
-            <i className="fas fa-user-md"></i>
-          </div>
-          <h3>Dr. Anil Khinvasara</h3>
-          <p className="role">Trustee</p>
-        </div>
+        ))}
       </div>
     </section>
   );

@@ -20,7 +20,7 @@ const VideoSection = () => {
             <i className="fas fa-play-circle" /> Our Story
           </span>
           <h2>See Our Work in Action</h2>
-          <p>Watch how Khinvasara Parivar Trust is making a difference — one initiative at a time.</p>
+          <p>Watch how Khinvasara Pariwar Trust is making a difference — one initiative at a time.</p>
         </div>
 
         {/* Video card */}
@@ -75,7 +75,7 @@ const VideoSection = () => {
                 ref={iframeRef}
                 className="video-iframe"
                 src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
-                title="Khinvasara Parivar Trust – Our Work"
+                title="Khinvasara Pariwar Trust – Our Work"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
@@ -86,7 +86,7 @@ const VideoSection = () => {
           <div className="video-card-footer">
             <div className="video-meta">
               <i className="fas fa-film" />
-              <span>Khinvasara Parivar Trust</span>
+              <span>Khinvasara Pariwar Trust</span>
             </div>
             <a
               href={`https://www.youtube.com/watch?v=${VIDEO_ID}`}

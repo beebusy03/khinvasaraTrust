@@ -2,6 +2,8 @@ interface HeroProps {
   onDonateClick: () => void;
 }
 
+import I18nText from './I18nText';
+
 const Hero = ({ onDonateClick }: HeroProps) => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -23,7 +25,12 @@ const Hero = ({ onDonateClick }: HeroProps) => {
           <i className="fas fa-certificate"></i>
           Registered Public Charitable Trust Since 2007
         </span>
-        <h1>Khinvasara Parivar (Ghodegaonkar) Welfare Nidhi</h1>
+        <h1>
+          <I18nText
+            en="Khinvasara Pariwar (Ghodegaonkar) Welfare Nidhi"
+            mr="खिंवासरा परिवार (घोडेगांवकर) वेलफेअर निधी"
+          />
+        </h1>
         <p className="hero-tagline" style={{marginBottom:"5px"}}>Serving Humanity with Compassion & Dedication</p>
         <div className="hero-buttons">
           <a href="#donate" onClick={handleDonateClick} className="btn btn-primary">

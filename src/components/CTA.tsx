@@ -1,23 +1,53 @@
-const CTA = () => {
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+interface CTAProps {
+  onDonateClick?: () => void;
+}
+
+const CTA = ({ onDonateClick }: CTAProps) => {
+  const handleContactWithSubject = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    subject: string
+  ) => {
     e.preventDefault();
-    const target = document.querySelector(href);
+    const target = document.querySelector('#contact');
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    // Dispatch after a brief delay so Contact is mounted/visible first
+    setTimeout(() => {
+      window.dispatchEvent(
+        new CustomEvent('prefill-contact-subject', { detail: { subject } })
+      );
+    }, 400);
+  };
+
+  const handleDonate = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (onDonateClick) onDonateClick();
   };
 
   return (
     <section className="cta" id="donate">
       <div className="cta-content">
         <h2>Be the Change You Want to See</h2>
-        <p>Your contribution can transform lives and create lasting impact in communities that need it most. Join us in our mission to serve humanity.</p>
+        <p>Join us in our mission to serve humanity.</p>
         <div className="hero-buttons">
-          <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="btn btn-outline">
+          <a href="#donate" onClick={handleDonate} className="btn btn-outline">
             <i className="fas fa-heart"></i>
             Make a Donation
           </a>
-          <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="btn btn-outline">
+          <a
+            href="#contact"
+            onClick={(e) => handleContactWithSubject(e, 'sahayogi')}
+            className="btn btn-outline"
+          >
+            <i className="fas fa-handshake"></i>
+            Become a Sahayogi Sabhasad
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleContactWithSubject(e, 'member')}
+            className="btn btn-outline"
+          >
             <i className="fas fa-handshake"></i>
             Become a Member
           </a>

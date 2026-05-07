@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import I18nText from './I18nText';
 
 // Health Category Images
 const health_2009_camp = '/2009MedicalCamp/002.jpg';
@@ -103,7 +104,7 @@ const galleryItems: GalleryItem[] = [
 
   // Community Service
   { image: community_2008_food, title: 'Food Grain Donation', category: 'Community Service – 2008', filterCategory: 'Community Service', year: '2008', large: true },
-  { image: community_2020_family, title: 'Khinvasara Parivar – Family Together', category: 'Family Unity', filterCategory: 'Community Service', year: '2020' },
+  { image: community_2020_family, title: 'Khinvasara Pariwar – Family Together', category: 'Family Unity', filterCategory: 'Community Service', year: '2020' },
   { image: community_2020_team, title: 'Members with Umed Pariwar Team', category: 'Collaboration – 2020', filterCategory: 'Community Service', year: '2020' },
   { image: community_2025_group, title: 'Community Coming Together', category: 'Together We Serve – 2025', filterCategory: 'Community Service', year: '2025' },
 ];
@@ -111,10 +112,21 @@ const galleryItems: GalleryItem[] = [
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [page, setPage] = useState(0);
+  const PAGE_SIZE = 6;
 
   const filteredItems = activeFilter === 'All'
     ? galleryItems
     : galleryItems.filter(item => item.filterCategory === activeFilter);
+
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE));
+  const start = page * PAGE_SIZE;
+  const visibleItems = filteredItems.slice(start, start + PAGE_SIZE);
+
+  // Reset page when filter changes
+  useEffect(() => {
+    setPage(0);
+  }, [activeFilter]);
 
   // Category counts
   const categoryCounts: Record<string, number> = {
@@ -137,7 +149,9 @@ const Gallery = () => {
     <section className="gallery-section" id="gallery">
       <div className="section-header">
         <span className="section-badge"><i className="fas fa-images"></i> Gallery</span>
-        <h2>Our Work in Pictures</h2>
+        <h2>
+          <I18nText en="Our Work in Pictures" mr="छायाचित्र गॅलरी" />
+        </h2>
         <p>Visual stories of impact and transformation across communities</p>
       </div>
       <div className="gallery-container">
@@ -155,22 +169,74 @@ const Gallery = () => {
           ))}
         </div>
 
-        <div className="gallery-grid">
-          {filteredItems.map((item, index) => (
-            <div
-              className={`gallery-item ${item.large ? 'large' : ''}`}
-              key={index}
-              onClick={() => setSelectedImage(item)}
-            >
-              <img src={item.image} alt={item.title} loading="lazy" />
-              <div className="gallery-overlay">
-                <i className="fas fa-search-plus"></i>
-                <h4>{item.title}</h4>
-                <p>{item.category}</p>
-                <span className="gallery-year-badge">{item.year}</span>
+        <div className="gallery-carousel">
+          <div className="gallery-grid" key={page}>
+            {visibleItems.map((item, index) => (
+              <div
+                className={`gallery-item ${item.large ? 'large' : ''}`}
+                key={`${page}-${index}`}
+                onClick={() => setSelectedImage(item)}
+              >
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="gallery-overlay">
+                  <i className="fas fa-search-plus"></i>
+                  <h4>{item.title}</h4>
+                  <p>{item.category}</p>
+                  <span className="gallery-year-badge">{item.year}</span>
+                </div>
               </div>
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="gallery-carousel-controls">
+              <button
+                type="button"
+                className="gallery-carousel-btn"
+                onClick={() =>
+                  setPage((p) => (p - 1 + totalPages) % totalPages)
+                }
+                aria-label="Previous photos"
+              >
+                <i className="fas fa-chevron-left"></i>
+              </button>
+
+              <div className="gallery-carousel-progress">
+                <div className="gallery-carousel-progress-track">
+                  <div
+                    className="gallery-carousel-progress-thumb"
+                    style={{
+                      width: `${100 / totalPages}%`,
+                      transform: `translateX(${page * 100}%)`,
+                    }}
+                  />
+                </div>
+                <div className="gallery-carousel-dots">
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`gallery-carousel-dot ${i === page ? 'active' : ''}`}
+                      onClick={() => setPage(i)}
+                      aria-label={`Go to page ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                <span className="gallery-carousel-count">
+                  {page + 1} / {totalPages}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                className="gallery-carousel-btn"
+                onClick={() => setPage((p) => (p + 1) % totalPages)}
+                aria-label="Next photos"
+              >
+                <i className="fas fa-chevron-right"></i>
+              </button>
             </div>
-          ))}
+          )}
         </div>
 
         {filteredItems.length === 0 && (
@@ -260,11 +326,111 @@ const Gallery = () => {
           color: white;
         }
 
+        .gallery-carousel { position: relative; }
+
         .gallery-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 1fr;
           gap: 1rem;
-          grid-auto-flow: dense;
+          animation: galleryFadeIn 0.4s ease;
+        }
+        /* Inside the paged carousel, force a strict 3×2 layout */
+        .gallery-grid .gallery-item,
+        .gallery-grid .gallery-item.large {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+        @keyframes galleryFadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Gallery carousel controls ── */
+        .gallery-carousel-controls {
+          display: flex;
+          align-items: center;
+          gap: 0.85rem;
+          margin-top: 1.5rem;
+          padding: 0.75rem 1rem;
+          background: white;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          box-shadow: 0 4px 14px rgba(15, 76, 117, 0.06);
+        }
+        .gallery-carousel-btn {
+          flex-shrink: 0;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          border: 1px solid var(--border);
+          background: white;
+          color: var(--primary);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          transition: all 0.25s ease;
+        }
+        .gallery-carousel-btn:hover {
+          background: var(--primary);
+          color: white;
+          border-color: var(--primary);
+          transform: scale(1.06);
+        }
+        .gallery-carousel-progress {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+        .gallery-carousel-progress-track {
+          flex: 1;
+          min-width: 100px;
+          height: 5px;
+          background: rgba(15, 76, 117, 0.12);
+          border-radius: 999px;
+          overflow: hidden;
+          position: relative;
+        }
+        .gallery-carousel-progress-thumb {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light, #3282b8) 100%);
+          border-radius: 999px;
+          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gallery-carousel-dots {
+          display: flex;
+          gap: 7px;
+        }
+        .gallery-carousel-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          background: rgba(15, 76, 117, 0.25);
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+        .gallery-carousel-dot:hover { background: rgba(15, 76, 117, 0.55); }
+        .gallery-carousel-dot.active {
+          background: var(--primary);
+          transform: scale(1.4);
+        }
+        .gallery-carousel-count {
+          font-size: 0.82rem;
+          color: var(--text);
+          font-weight: 600;
+          font-variant-numeric: tabular-nums;
+          min-width: 42px;
+          text-align: right;
+          opacity: 0.75;
         }
 
         .gallery-item {
@@ -432,7 +598,7 @@ const Gallery = () => {
 
         @media (max-width: 768px) {
           .gallery-grid {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
           }
 
           .gallery-item.large {
@@ -447,6 +613,8 @@ const Gallery = () => {
             padding: 0.4rem 0.75rem;
             font-size: 0.8rem;
           }
+
+          .gallery-carousel-count { display: none; }
 
           .modal-close-btn {
             top: 10px;
@@ -466,6 +634,11 @@ const Gallery = () => {
 
           .gallery-overlay p {
             font-size: 0.7rem;
+          }
+
+          .gallery-carousel-controls {
+            padding: 0.6rem 0.75rem;
+            gap: 0.5rem;
           }
         }
       `}</style>

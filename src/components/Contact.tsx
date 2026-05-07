@@ -1,7 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+
+  // Allow other components (e.g. CTA buttons) to prefill the subject
+  useEffect(() => {
+    const handlePrefill = (e: Event) => {
+      const detail = (e as CustomEvent<{ subject?: string }>).detail;
+      if (detail?.subject) {
+        setFormData(prev => ({ ...prev, subject: detail.subject as string }));
+      }
+    };
+    window.addEventListener('prefill-contact-subject', handlePrefill);
+    return () => window.removeEventListener('prefill-contact-subject', handlePrefill);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +40,7 @@ const Contact = () => {
             <i className="fas fa-map-marker-alt"></i>
             <div>
               <h4>Our Address</h4>
-              <p>Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
+              <p>C/O Onyx Automation Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
             </div>
           </div>
           <div className="contact-item">
@@ -51,13 +63,6 @@ const Contact = () => {
               <h4>Website</h4>
               <p>www.khinvasaratrust.org</p>
             </div>
-          </div>
-          <div className="social-links">
-           
-           
-            <a href="#"><i className="fab fa-instagram"></i></a>
-           
-            <a href="#"><i className="fab fa-youtube"></i></a>
           </div>
         </div>
         <div className="contact-form">
@@ -82,10 +87,10 @@ const Contact = () => {
                 <label htmlFor="subject">Subject *</label>
                 <select id="subject" value={formData.subject} onChange={handleChange} required>
                   <option value="">Select a subject</option>
-                  <option value="donation">Donation Inquiry</option>
-                  <option value="membership">Membership</option>
+                  <option value="donation">Donation</option>
+                  <option value="sahayogi">Sahayogi Sabhasad</option>
+                  <option value="member">Become a Member</option>
                   <option value="volunteer">Volunteer</option>
-                  <option value="partnership">Partnership</option>
                   <option value="general">General Inquiry</option>
                 </select>
               </div>

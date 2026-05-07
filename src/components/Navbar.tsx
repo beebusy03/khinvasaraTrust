@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import Tlogo from '../assets/Tlogo.png';
+import I18nText from './I18nText';
 
 interface NavbarProps {
   onDonateClick: () => void;
@@ -38,8 +39,10 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
             <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
           </div>
           <div className="logo-text-container">
-            <span className="logo-text">Khinvasara Trust</span>
-            <span className="logo-tagline">Serving Since 2007</span>
+            <span className="logo-text notranslate" translate="no">
+              <I18nText en="Khinvasara Trust" mr="खिंवासरा ट्रस्ट" />
+            </span>
+            <span className="logo-tagline notranslate" translate="no">Serving Since 2007</span>
           </div>
         </a>
 
@@ -53,11 +56,11 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
             <i className="fas fa-times"></i>
           </button>
           <li><a href="#home"    onClick={(e) => handleNavClick(e, '#home')}>Home</a></li>
-          <li><a href="#about"   onClick={(e) => handleNavClick(e, '#about')}>About</a></li>
+          <li><a href="#about"   onClick={(e) => handleNavClick(e, '#about')}>About Us</a></li>
           <li><a href="#events"  onClick={(e) => handleNavClick(e, '#events')}>Events</a></li>
           <li><a href="#media"   onClick={(e) => handleNavClick(e, '#media')}>Media</a></li>
           <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a></li>
-          <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
+          <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact Us</a></li>
         </ul>
 
         {/* ── Right controls ── */}

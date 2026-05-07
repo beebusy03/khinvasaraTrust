@@ -27,15 +27,33 @@
 /* Modal Container */
 .donate-modal {
     background: var(--lighter);
-    border-radius: 20px;
+    border-radius: 22px;
     width: 100%;
-    max-width: 480px;
-    max-height: 90vh;
+    max-width: 760px;
+    max-height: 92vh;
     overflow-y: auto;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-    transform: scale(0.9) translateY(20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(15, 76, 117, 0.35) transparent;
+    box-shadow: 0 30px 70px -10px rgba(15, 23, 42, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    transform: scale(0.94) translateY(20px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+}
+
+.donate-modal::-webkit-scrollbar {
+    width: 5px;
+}
+.donate-modal::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+}
+.donate-modal::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(15, 76, 117, 0.35) 0%, rgba(50, 130, 184, 0.35) 100%);
+    border-radius: 999px;
+}
+.donate-modal::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(15, 76, 117, 0.6) 0%, rgba(50, 130, 184, 0.6) 100%);
 }
 
 .donate-modal-overlay.active .donate-modal {
@@ -98,64 +116,78 @@
 
 /* Modal Body */
 .donate-modal-body {
-    padding: 2rem;
+    padding: 1.75rem 1.75rem 0.5rem;
+}
+
+/* Two-column payment grid */
+.donate-payment-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.donate-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    background: rgba(15, 76, 117, 0.08);
+    border-radius: 999px;
+}
+
+.donate-section-label i {
+    font-size: 0.85rem;
 }
 
 /* QR Code Section */
 .donate-qr-section {
     text-align: center;
-    margin-bottom: 2rem;
-}
-
-.donate-qr-badge {
-    display: inline-flex;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(212, 119, 14, 0.3);
+    justify-content: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.donate-qr-badge i {
-    font-size: 1rem;
+.donate-qr-section:hover {
+    box-shadow: 0 14px 30px -10px rgba(15, 76, 117, 0.18);
+    transform: translateY(-2px);
 }
 
 .donate-qr-container {
-    background: var(--light);
-    padding: 2rem;
-    border-radius: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: 1rem;
+    border-radius: 14px;
     display: inline-block;
-    border: 2px solid var(--border);
+    border: 1.5px dashed rgba(15, 76, 117, 0.25);
     position: relative;
     transition: all 0.3s ease;
 }
 
-.donate-qr-container:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-}
-
 .donate-qr-image {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 8px;
     display: block;
 }
 
-.donate-qr-loading {
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(90deg, var(--light) 25%, var(--border) 50%, var(--light) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    border-radius: 8px;
+.donate-qr-help {
+    margin: 1rem 0 0;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    line-height: 1.45;
+    max-width: 220px;
 }
 
 @keyframes shimmer {
@@ -208,52 +240,35 @@
 
 /* Bank Details Section */
 .donate-bank-section {
-    background: linear-gradient(135deg, var(--light) 0%, #f0f4f8 100%);
-    padding: 1.5rem;
-    border-radius: 14px;
-    margin-bottom: 1.5rem;
+    background: #ffffff;
+    padding: 1.5rem 1.25rem;
+    border-radius: 16px;
     border: 1px solid var(--border);
-}
-
-.donate-bank-header {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 1rem;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.donate-bank-icon {
-    width: 42px;
-    height: 42px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-}
-
-.donate-bank-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--dark);
-    margin: 0;
+.donate-bank-section:hover {
+    box-shadow: 0 14px 30px -10px rgba(15, 76, 117, 0.18);
+    transform: translateY(-2px);
 }
 
 .donate-bank-details {
-    background: white;
-    padding: 1.2rem;
-    border-radius: 10px;
+    background: linear-gradient(180deg, #fafbfc 0%, #f4f7fa 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
     border: 1px solid var(--border);
+    flex: 1;
 }
 
 .donate-detail-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 0;
+    border-bottom: 1px dashed rgba(15, 76, 117, 0.12);
+    gap: 0.75rem;
 }
 
 .donate-detail-row:last-child {
@@ -261,35 +276,49 @@
 }
 
 .donate-detail-label {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--text-light);
-    font-weight: 500;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    flex-shrink: 0;
 }
 
 .donate-detail-value {
     font-family: 'Monaco', 'Courier New', monospace;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--dark);
-    font-weight: 600;
-    display: flex;
+    font-weight: 700;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
+    text-align: right;
+}
+
+.donate-detail-text {
+    word-break: break-all;
 }
 
 .donate-copy-btn {
-    background: var(--light);
+    background: rgba(15, 76, 117, 0.08);
     border: none;
-    padding: 4px 8px;
-    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
     cursor: pointer;
-    color: var(--text-light);
+    color: var(--primary);
     transition: all 0.2s ease;
     font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .donate-copy-btn:hover {
     background: var(--primary);
     color: white;
+    transform: scale(1.05);
 }
 
 .donate-copy-btn.copied {
@@ -351,21 +380,124 @@
     border-color: var(--primary);
 }
 
-/* Trust Info Badge */
-.donate-trust-info {
-    background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
-    padding: 1rem;
-    border-radius: 10px;
+/* Donation Quick Points */
+.donate-points {
+    margin: 0 0 1rem;
+    padding: 1rem 1.1rem;
+    background: linear-gradient(135deg, rgba(15, 76, 117, 0.04) 0%, rgba(50, 130, 184, 0.06) 100%);
+    border: 1px solid rgba(15, 76, 117, 0.14);
+    border-radius: 12px;
+}
+
+.donate-points-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f4c75;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.2px;
+}
+
+.donate-points-header i {
+    font-size: 1rem;
+}
+
+.donate-points-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+}
+
+@media (min-width: 600px) {
+    .donate-points-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem 1rem;
+    }
+}
+
+.donate-points-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.55rem 0.65rem;
+    background: #ffffff;
+    border: 1px solid #e8edf3;
+    border-radius: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.donate-points-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -10px rgba(15, 76, 117, 0.18);
+    border-color: rgba(15, 76, 117, 0.28);
+}
+
+.donate-points-list li > i {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+    margin-top: 1px;
+}
+
+.donate-points-list li strong {
+    display: block;
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.1rem;
+    line-height: 1.3;
+}
+
+.donate-points-list li p {
+    font-size: 0.76rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.donate-points-list li p strong {
+    display: inline;
+    font-size: 0.76rem;
+    color: #0f4c75;
+    margin: 0;
+}
+
+/* Trust Info Badge */
+.donate-trust-info {
+    background: linear-gradient(135deg, rgba(245, 181, 10, 0.1) 0%, rgba(212, 119, 14, 0.06) 100%);
+    padding: 0.95rem 1.1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(212, 119, 14, 0.22);
     border-left: 4px solid var(--gold);
 }
 
 .donate-trust-info i {
     color: var(--gold);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: rgba(212, 119, 14, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .donate-trust-info-text {
@@ -373,17 +505,23 @@
 }
 
 .donate-trust-info-text h4 {
-    margin: 0 0 0.3rem;
-    font-size: 0.9rem;
-    color: var(--secondary);
-    font-weight: 600;
+    margin: 0 0 0.2rem;
+    font-size: 0.88rem;
+    color: #78350f;
+    font-weight: 700;
+    letter-spacing: 0.2px;
 }
 
 .donate-trust-info-text p {
     margin: 0;
-    font-size: 0.8rem;
-    color: var(--text);
-    line-height: 1.4;
+    font-size: 0.78rem;
+    color: #92400e;
+    line-height: 1.45;
+}
+
+.donate-trust-info-text strong {
+    color: #78350f;
+    font-weight: 700;
 }
 
 /* Footer Actions */
@@ -535,8 +673,8 @@
 /* Mobile Responsive */
 @media (max-width: 480px) {
     .donate-modal {
-        max-width: calc(100% - 2rem);
-        margin: 1rem;
+        max-width: calc(100% - 1.5rem);
+        margin: 0.75rem;
     }
 
     .donate-modal-header {
@@ -552,11 +690,7 @@
     }
 
     .donate-modal-body {
-        padding: 1.5rem;
-    }
-
-    .donate-qr-container {
-        padding: 1.5rem;
+        padding: 1.25rem 1.25rem 0.5rem;
     }
 
     .donate-qr-image {
@@ -564,52 +698,42 @@
         height: 160px;
     }
 
-    .donate-methods-tabs {
-        flex-direction: column;
-    }
-
-    .donate-amounts {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .donate-custom-amount {
-        grid-column: span 2;
-    }
-
-    .donate-upi-apps {
-        flex-wrap: wrap;
+    .donate-detail-value {
+        font-size: 0.82rem;
     }
 
     .donate-modal-footer {
-        padding: 0 1.5rem 1.5rem;
+        padding: 0 1.25rem 1.25rem;
     }
 }
 
 /* Tablet and up */
 @media (min-width: 768px) {
-    .donate-modal {
-        max-width: 550px;
-    }
-
     .donate-modal-header {
-        padding: 2.5rem 2.5rem 2rem;
+        padding: 2.25rem 2.25rem 1.75rem;
     }
 
     .donate-modal-title {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
     }
 
     .donate-modal-body {
-        padding: 2.5rem;
+        padding: 2rem 2rem 0.5rem;
+    }
+
+    .donate-payment-grid {
+        grid-template-columns: minmax(240px, 0.85fr) 1fr;
+        gap: 1.5rem;
+        align-items: stretch;
     }
 
     .donate-qr-image {
-        width: 240px;
-        height: 240px;
+        width: 200px;
+        height: 200px;
     }
 
     .donate-modal-footer {
-        padding: 0 2.5rem 2.5rem;
+        padding: 0 2rem 2rem;
     }
 }
 

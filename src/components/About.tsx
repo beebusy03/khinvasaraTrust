@@ -1,55 +1,56 @@
 import { useState, useEffect, useRef } from 'react';
+import I18nText from './I18nText';
 
-// 5 family snaps for the carousel
+// Family snaps for the carousel
 const carouselImages = [
   { src: '/2025/Photos-461.jpg', alt: 'Khinvasara Family Members' },
   { src: '/2020/007 Family Memebers 2.jpg', alt: 'Khinvasara Family Members' },
-  { src: '/2020/006 Members with Umed team.jpg', alt: 'Family Members with Umed Team' },
-  { src: '/2020/005 Review meeting.jpg', alt: 'Family Review Meeting' },
-  { src: '/2025/002.jpg', alt: 'Family at Umed Parivar' },
+  { src: '/2010Dental/022.jpg', alt: 'Family Members with Umed Team' },
+  { src: '/2010Dental/023.jpg', alt: 'Family Members with Umed Team' },
+  { src: '/2010Dental/024.jpg', alt: 'Family Members with Umed Team' },
+  { src: '/2010Dental/027.jpg', alt: 'Family Members with Umed Team' },
+  { src: '/2025/001.jpg', alt: 'Family at Umed Pariwar' },
 ];
 
 const About = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goToSlide = (index: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
     setCurrentSlide(index);
-    setTimeout(() => setIsTransitioning(false), 30);
   };
 
   const nextSlide = () => {
-    goToSlide((currentSlide + 1) % carouselImages.length);
+    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
   };
 
   const prevSlide = () => {
-    goToSlide((currentSlide - 1 + carouselImages.length) % carouselImages.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
+    );
   };
 
+  // Auto-play every 2 seconds; pause on hover
   useEffect(() => {
-    intervalRef.current = setInterval(nextSlide, 4000);
+    if (isPaused) return;
+    intervalRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 2000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [currentSlide]);
+  }, [isPaused]);
 
-  const pauseAutoPlay = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
-  const resumeAutoPlay = () => {
-    intervalRef.current = setInterval(nextSlide, 4000);
-  };
+  const pauseAutoPlay = () => setIsPaused(true);
+  const resumeAutoPlay = () => setIsPaused(false);
 
   return (
     <section className="about" id="about">
       <div className="section-header">
         <span className="section-badge"><i className="fas fa-info-circle"></i> About Us</span>
-        <h2>Together We Care,<br/>Together We Serve</h2>
-        <p className="sanskrit-quote">"सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामया"</p>
+        <h2 className="notranslate" translate="no">Together We Care,<br/>Together We Serve</h2>
+        <p className="sanskrit-quote notranslate" translate="no">"सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामया"</p>
       </div>
       <div className="about-container">
         {/* === CAROUSEL === */}
@@ -101,9 +102,21 @@ const About = () => {
 
         {/* === CONTENT === */}
         <div className="about-content">
-          <h3>Khinvasara Family (Ghodegaonkar) Welfare Nidhi</h3>
+          <h3>
+            <I18nText
+              en="Khinvasara Family (Ghodegaonkar) Welfare Nidhi"
+              mr="खिंवासरा फॅमिली (घोडेगांवकर) वेलफेअर निधी"
+            />
+          </h3>
           
-          <p><strong>Khinvasara Family (Ghodegaonkar) Welfare Nidhi</strong>, popularly known as <strong>Khinvasara Trust</strong>, was founded with a simple belief — to give back to society with sincerity, compassion, and collective family commitment.</p>
+          <p><strong>
+            <I18nText
+              en="Khinvasara Family (Ghodegaonkar) Welfare Nidhi"
+              mr="खिंवासरा फॅमिली (घोडेगांवकर) वेलफेअर निधी"
+            />
+          </strong>, popularly known as <strong>
+            <I18nText en="Khinvasara Trust" mr="खिंवासरा ट्रस्ट" />
+          </strong>, was founded with a simple belief — to give back to society with sincerity, compassion, and collective family commitment.</p>
           
           <p>Rooted in strong family values, the Trust reflects our belief that meaningful change begins when families come together to serve the community. Our mission is to nurture a culture of togetherness, responsibility, and compassion, while extending a helping hand to deserving individuals and communities for a better tomorrow.</p>
 

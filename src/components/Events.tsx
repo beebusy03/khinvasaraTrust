@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // ============================================================
 // IMAGE IMPORTS
@@ -304,7 +304,7 @@ const TIMELINE: YearEntry[] = [
         categoryIcon: 'fas fa-leaf',
         date: '22nd June 2025',
         description: [
-          'On <strong>22nd June 2025</strong>, a tree plantation drive was organized by <strong>Khinvasara Parivar Trust in collaboration with the 14Trees Foundation</strong> at the serene Village Vetale. The event was truly heartwarming and impactful.',
+          'On <strong>22nd June 2025</strong>, a tree plantation drive was organized by <strong>Khinvasara Pariwar Trust in collaboration with the 14Trees Foundation</strong> at the serene Village Vetale. The event was truly heartwarming and impactful.',
           'With enthusiastic participation from all family members of all ages and the inspiring support of the passionate 14Trees volunteers, the event beautifully blended purpose and joy. From scenic hikes to hands-on tree planting, it was a day filled with nature, bonding, and shared commitment to our environment. All the saplings planted will be maintained by the foundation for years to come.',
           'This initiative aligns with our Trust\'s key focus on environmental responsibility towards mother earth.',
         ],
@@ -390,8 +390,8 @@ const TIMELINE: YearEntry[] = [
         description: [
           'The COVID-19 pandemic has demonstrated the interconnected nature of our world – and that no one is safe until everyone is safe. The pandemic has been one of the greatest health crises in recorded history.',
           'Intellectually Development Disable people are an integral part of our society and in current situation Covid-19 vaccination of these members is equally important. It is important that the vaccination is done in their comfort zone through on location vaccination drive.',
-          '<strong>Khinvasara Pariwar Trust in association with Pune Municipal Corporation (PMC)</strong> carried out a vaccination drive at Umed Parivar Wadki for first and second dose of Covishield vaccine. It was PMC\'s first on site vaccination drive out of Pune municipal boundary.',
-          'The drive was conducted on <strong>24th July 2021</strong> for the first dose and on <strong>23rd October 2021</strong> for the second dose. More than 34 team members of Umed Parivar along with their staff have been vaccinated successfully.',
+          '<strong>Khinvasara Pariwar Trust in association with Pune Municipal Corporation (PMC)</strong> carried out a vaccination drive at Umed Pariwar Wadki for first and second dose of Covishield vaccine. It was PMC\'s first on site vaccination drive out of Pune municipal boundary.',
+          'The drive was conducted on <strong>24th July 2021</strong> for the first dose and on <strong>23rd October 2021</strong> for the second dose. More than 34 team members of Umed Pariwar along with their staff have been vaccinated successfully.',
         ],
         photos: [
           { src: image2021_001, alt: 'Vaccination Drive 2021',   caption: 'COVID-19 Vaccination Initiative' },
@@ -436,10 +436,10 @@ const TIMELINE: YearEntry[] = [
           'To help Umed Pariwar, <strong>Khinvasara Pariwar Trust in association with Mahati Powerlines and M/s G.V Lele</strong> supplied and installed 200 KVA Transformer and HT equipment.',
         ],
         photos: [
-          { src: image2020_001, alt: 'Umed Parivar Meeting',    caption: 'Meeting at Umed Parivar' },
+          { src: image2020_001, alt: 'Umed Pariwar Meeting',    caption: 'Meeting at Umed Pariwar' },
           { src: image2020_002, alt: 'Transformer Installation', caption: 'Transformer installation project' },
           { src: image2020_003, alt: 'Transformer Setup',        caption: 'Setting up electrical transformer' },
-          { src: image2020_004, alt: 'Members at Umed Parivar', caption: 'Members gathering at Umed Parivar' },
+          { src: image2020_004, alt: 'Members at Umed Pariwar', caption: 'Members gathering at Umed Pariwar' },
           { src: image2020_005, alt: 'Review Meeting',           caption: 'Review meeting with team members' },
           { src: image2020_006, alt: 'Members with Umed Team',  caption: 'Members collaborating with Umed team' },
           { src: image2020_007, alt: 'Family Members',           caption: 'Family members participation' },
@@ -459,12 +459,12 @@ const TIMELINE: YearEntry[] = [
         date: '2020',
         description: [
           'The year 2020 began with hope and new plans. However, by March, the world was confronted with the unprecedented challenge of the <strong>COVID-19 pandemic</strong>.',
-          'In response, the Government of India established the <strong>PM CARES Fund</strong>. Demonstrating solidarity and social responsibility, the Khinvasara Parivar Trust contributed <strong>₹21,000 to the PM CARES Fund</strong> to support the nation\'s fight against COVID-19.',
+          'In response, the Government of India established the <strong>PM CARES Fund</strong>. Demonstrating solidarity and social responsibility, the Khinvasara Pariwar Trust contributed <strong>₹21,000 to the PM CARES Fund</strong> to support the nation\'s fight against COVID-19.',
         ],
         featuredPhoto: {
           src: image2020_pmcares,
           alt: 'PM CARES Fund Contribution',
-          caption: 'Khinvasara Parivar Trust\'s contribution to PM CARES Fund during COVID-19',
+          caption: 'Khinvasara Pariwar Trust\'s contribution to PM CARES Fund during COVID-19',
         },
         stats: [
           { icon: 'fas fa-rupee-sign',    value: '₹21,000',  label: 'Contribution' },
@@ -488,8 +488,8 @@ const TIMELINE: YearEntry[] = [
         categoryIcon: 'fas fa-solar-panel',
         date: '15th August 2018',
         description: [
-          'With about 300 clear and sunny days a year, India has massive potential to reduce dependence on fossil fuels. As a small step in this direction, the Khinvasara Parivar Trust decided to help an educational institute reduce their electricity bills by donating a solar power generating system.',
-          'On <strong>15th August 2018</strong>, Khinvasara Parivar Trust handed over a "3.25 Kw Solar Power" generating system to <strong>Jeevan Vidya Mandir School, Ghodegaon, Maharashtra</strong>. This project was executed by Solarich System Pune. The total cost of the project is Rs. 3 lakhs.',
+          'With about 300 clear and sunny days a year, India has massive potential to reduce dependence on fossil fuels. As a small step in this direction, the Khinvasara Pariwar Trust decided to help an educational institute reduce their electricity bills by donating a solar power generating system.',
+          'On <strong>15th August 2018</strong>, Khinvasara Pariwar Trust handed over a "3.25 Kw Solar Power" generating system to <strong>Jeevan Vidya Mandir School, Ghodegaon, Maharashtra</strong>. This project was executed by Solarich System Pune. The total cost of the project is Rs. 3 lakhs.',
           'The life of this system is <strong>25 years</strong> and through net metering will save on the electricity bill of the school. Expected annual savings are approx Rs. 45,000. Along with financial savings, the project will also save approx <strong>2500 trees from being cut down</strong> or <strong>65 tonnes of coal</strong> which would have been used for generating thermal-based MSEB electricity.',
         ],
         infoBoxes: [
@@ -1309,7 +1309,20 @@ function PhotoGrid({
   title?: string;
   onSelect: (p: LightboxPhoto) => void;
 }) {
+  const PAGE_SIZE = 6;
+  const [page, setPage] = useState(0);
+
   if (!photos || photos.length === 0) return null;
+
+  const totalPages = Math.ceil(photos.length / PAGE_SIZE);
+  const start = page * PAGE_SIZE;
+  const visiblePhotos = photos.slice(start, start + PAGE_SIZE);
+
+  // Reset to first page if photos array changes
+  useEffect(() => {
+    setPage(0);
+  }, [photos]);
+
   return (
     <div className="event-gallery">
       {title && (
@@ -1317,16 +1330,78 @@ function PhotoGrid({
           <i className="fas fa-camera" /> {title}
         </h4>
       )}
-      <div className="event-images-grid">
-        {photos.map((img, i) => (
-          <div key={i} className="event-image-item" onClick={() => onSelect(img)}>
-            <img src={img.src} alt={img.alt} loading="lazy" />
-            <div className="image-overlay">
-              <i className="fas fa-search-plus" />
-              <p>{img.caption}</p>
+      <div
+        className={`event-images-carousel ${
+          totalPages > 1 ? 'has-pages' : ''
+        }`}
+      >
+        <div className="event-images-grid" key={page}>
+          {visiblePhotos.map((img, i) => (
+            <div
+              key={`${page}-${i}`}
+              className="event-image-item"
+              onClick={() => onSelect(img)}
+            >
+              <img src={img.src} alt={img.alt} loading="lazy" />
+              <div className="image-overlay">
+                <i className="fas fa-search-plus" />
+                <p>{img.caption}</p>
+              </div>
             </div>
+          ))}
+        </div>
+
+        {totalPages > 1 && (
+          <div className="event-carousel-controls">
+            <button
+              type="button"
+              className="event-carousel-btn"
+              onClick={() =>
+                setPage((p) => (p - 1 + totalPages) % totalPages)
+              }
+              aria-label="Previous photos"
+            >
+              <i className="fas fa-chevron-left" />
+            </button>
+
+            <div className="event-carousel-progress">
+              <div className="event-carousel-progress-track">
+                <div
+                  className="event-carousel-progress-thumb"
+                  style={{
+                    width: `${100 / totalPages}%`,
+                    transform: `translateX(${page * 100}%)`,
+                  }}
+                />
+              </div>
+              <div className="event-carousel-dots">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`event-carousel-dot ${
+                      i === page ? 'active' : ''
+                    }`}
+                    onClick={() => setPage(i)}
+                    aria-label={`Go to page ${i + 1}`}
+                  />
+                ))}
+              </div>
+              <span className="event-carousel-count">
+                {page + 1} / {totalPages}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              className="event-carousel-btn"
+              onClick={() => setPage((p) => (p + 1) % totalPages)}
+              aria-label="Next photos"
+            >
+              <i className="fas fa-chevron-right" />
+            </button>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
@@ -1559,13 +1634,61 @@ const Events = () => {
             </div>
 
             <div className="featured-event-content">
+              {isMultiple && (
+                <div className="initiatives-summary">
+                  <span className="initiatives-summary-label">
+                    <i className="fas fa-list-check" /> {initiatives.length} Initiatives This Year
+                  </span>
+                  <div className="initiatives-summary-chips">
+                    {initiatives.map((init, idx) => (
+                      <a
+                        key={init.id}
+                        href={`#${init.id}`}
+                        className="initiative-chip"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          document
+                            .getElementById(init.id)
+                            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }}
+                      >
+                        <span className="initiative-chip-num">{idx + 1}</span>
+                        <span className="initiative-chip-text">
+                          <i className={init.categoryIcon} /> {init.title}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {initiatives.map((initiative, idx) => (
-                <div key={initiative.id}>
-                  {isMultiple && idx > 0 && <div className="event-divider" />}
+                <div
+                  key={initiative.id}
+                  id={initiative.id}
+                  className={`initiative-block ${
+                    isMultiple ? 'initiative-block--card' : ''
+                  }`}
+                >
                   {isMultiple && (
-                    <p className="initiative-number">
-                      <strong>{idx + 1}. {initiative.title}</strong>
-                    </p>
+                    <div className="initiative-block-header">
+                      <div className="initiative-block-num">{idx + 1}</div>
+                      <div className="initiative-block-meta">
+                        <h5 className="initiative-block-title">
+                          <i className={initiative.categoryIcon} /> {initiative.title}
+                        </h5>
+                        <span className="initiative-block-sub">
+                          <i className="fas fa-calendar-alt" /> {initiative.date}
+                        </span>
+                      </div>
+                      <span
+                        className={`initiative-category-pill ${categoryColor(
+                          initiative.category
+                        )}`}
+                      >
+                        {initiative.category}
+                      </span>
+                    </div>
                   )}
                   <InitiativeCard
                     initiative={initiative}
@@ -1687,6 +1810,159 @@ const Events = () => {
         .sub-event { padding: 0; }
         .sub-event--border { padding-top: 0; }
 
+        /* ── Multi-initiative summary (table of contents) ── */
+        .initiatives-summary {
+          background: linear-gradient(135deg, rgba(15,76,117,0.06) 0%, rgba(50,130,184,0.04) 100%);
+          border: 1px solid rgba(15,76,117,0.12);
+          border-radius: 14px;
+          padding: 1.1rem 1.25rem;
+          margin-bottom: 1.5rem;
+        }
+        .initiatives-summary-label {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: var(--primary);
+          text-transform: uppercase;
+          letter-spacing: 0.6px;
+          margin-bottom: 0.75rem;
+          padding: 0.3rem 0.8rem;
+          background: white;
+          border-radius: 999px;
+          box-shadow: 0 2px 8px rgba(15,76,117,0.08);
+        }
+        .initiatives-summary-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .initiative-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.45rem 0.85rem 0.45rem 0.45rem;
+          background: white;
+          border: 1px solid rgba(15,76,117,0.18);
+          border-radius: 999px;
+          color: var(--dark);
+          text-decoration: none;
+          font-size: 0.85rem;
+          font-weight: 500;
+          transition: all 0.25s ease;
+          cursor: pointer;
+        }
+        .initiative-chip:hover {
+          background: var(--primary);
+          color: white;
+          border-color: var(--primary);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(15,76,117,0.22);
+        }
+        .initiative-chip:hover .initiative-chip-num {
+          background: white;
+          color: var(--primary);
+        }
+        .initiative-chip-num {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light, #3282b8) 100%);
+          color: white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.75rem;
+          font-weight: 700;
+          flex-shrink: 0;
+          transition: all 0.25s ease;
+        }
+        .initiative-chip-text i {
+          margin-right: 0.3rem;
+          opacity: 0.85;
+        }
+
+        /* ── Numbered initiative card (when multiple in a year) ── */
+        .initiative-block { scroll-margin-top: 90px; }
+        .initiative-block + .initiative-block { margin-top: 1.75rem; }
+        .initiative-block--card {
+          position: relative;
+          background: white;
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          padding: 1.5rem 1.5rem 1.25rem;
+          box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+          overflow: hidden;
+          transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .initiative-block--card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 5px;
+          height: 100%;
+          background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light, #3282b8) 50%, var(--secondary, #d4770e) 100%);
+        }
+        .initiative-block--card:hover {
+          box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+          transform: translateY(-2px);
+        }
+        .initiative-block-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding-bottom: 1rem;
+          margin-bottom: 1rem;
+          border-bottom: 1px dashed var(--border);
+          flex-wrap: wrap;
+        }
+        .initiative-block-num {
+          flex-shrink: 0;
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light, #3282b8) 100%);
+          color: white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.15rem;
+          font-weight: 800;
+          font-family: 'Cormorant Garamond', serif;
+          box-shadow: 0 6px 18px rgba(15, 76, 117, 0.3);
+          letter-spacing: -0.5px;
+        }
+        .initiative-block-meta {
+          flex: 1;
+          min-width: 180px;
+        }
+        .initiative-block-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: var(--dark);
+          margin: 0 0 0.2rem;
+          line-height: 1.3;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+        }
+        .initiative-block-title i { color: var(--primary); font-size: 0.95rem; }
+        .initiative-block-sub {
+          font-size: 0.78rem;
+          color: var(--text-light);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+        /* Inside a numbered card, hide the duplicated InitiativeCard header */
+        .initiative-block--card .initiative-header,
+        .initiative-block--card .sub-event-title {
+          display: none;
+        }
+        .initiative-block--card .sub-event { padding-top: 0; }
+
         /* ── Gallery grid ── */
         .event-gallery {
           margin: 2rem 0;
@@ -1704,8 +1980,95 @@ const Events = () => {
         }
         .event-images-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 0.85rem;
+          animation: photoFadeIn 0.4s ease;
+        }
+        @keyframes photoFadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Auto-paging photo carousel ── */
+        .event-images-carousel { position: relative; }
+        .event-carousel-controls {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+        .event-carousel-btn {
+          flex-shrink: 0;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 1px solid var(--border);
+          background: white;
+          color: var(--primary);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          transition: all 0.25s ease;
+          box-shadow: 0 2px 8px rgba(15, 76, 117, 0.08);
+        }
+        .event-carousel-btn:hover {
+          background: var(--primary);
+          color: white;
+          transform: scale(1.06);
+        }
+        .event-carousel-progress {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          flex-wrap: wrap;
+        }
+        .event-carousel-progress-track {
+          flex: 1;
+          min-width: 80px;
+          height: 4px;
+          background: rgba(15, 76, 117, 0.12);
+          border-radius: 999px;
+          overflow: hidden;
+          position: relative;
+        }
+        .event-carousel-progress-thumb {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light, #3282b8) 100%);
+          border-radius: 999px;
+          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .event-carousel-dots {
+          display: flex;
+          gap: 6px;
+        }
+        .event-carousel-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          border: none;
+          background: rgba(15, 76, 117, 0.25);
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+        .event-carousel-dot:hover { background: rgba(15, 76, 117, 0.5); }
+        .event-carousel-dot.active {
+          background: var(--primary);
+          transform: scale(1.4);
+        }
+        .event-carousel-count {
+          font-size: 0.78rem;
+          color: var(--text-light, #64748b);
+          font-weight: 600;
+          font-variant-numeric: tabular-nums;
+          min-width: 38px;
+          text-align: right;
         }
         .event-image-item {
           position: relative;
@@ -1920,7 +2283,8 @@ const Events = () => {
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 480px) {
-          .event-images-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+          .event-images-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+          .event-carousel-count { display: none; }
           .modal-close-btn { top: 10px; right: 10px; }
           .featured-single-image { max-width: 100%; }
         }

@@ -112,18 +112,26 @@ const recognitionItems = [
 
 const Media = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [activeSource, setActiveSource] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; caption: string } | null>(null);
 
   const activeFilter = tabs[activeTab].filter;
-  const filteredItems = activeFilter === 'all'
-    ? recognitionItems
-    : recognitionItems.filter(item => item.category === activeFilter);
+  const filteredItems = recognitionItems.filter(item => {
+    const matchesCategory = activeFilter === 'all' || item.category === activeFilter;
+    const matchesSource = !activeSource || item.source === activeSource;
+    return matchesCategory && matchesSource;
+  });
 
   const uniqueSources = [...new Set(recognitionItems.map(i => i.source))];
   const yearSpan = {
     from: Math.min(...recognitionItems.map(i => parseInt(i.year))),
     to: Math.max(...recognitionItems.map(i => parseInt(i.year))),
   };
+
+  const sourceCounts = uniqueSources.reduce<Record<string, number>>((acc, src) => {
+    acc[src] = recognitionItems.filter(i => i.source === src).length;
+    return acc;
+  }, {});
 
   return (
     <section className="media-section" id="media">
@@ -159,10 +167,26 @@ const Media = () => {
 
         <div className="source-badges">
           <span className="source-badge-label">Featured in:</span>
+          <button
+            type="button"
+            className={`source-badge source-badge--all ${activeSource === null ? 'active' : ''}`}
+            onClick={() => setActiveSource(null)}
+          >
+            <i className="fas fa-globe"></i> All
+            <span className="source-badge-count">{recognitionItems.length}</span>
+          </button>
           {uniqueSources.map((source, index) => (
-            <span key={index} className="source-badge">
+            <button
+              type="button"
+              key={index}
+              className={`source-badge ${activeSource === source ? 'active' : ''}`}
+              onClick={() =>
+                setActiveSource(prev => (prev === source ? null : source))
+              }
+            >
               <i className="fas fa-check-circle"></i> {source}
-            </span>
+              <span className="source-badge-count">{sourceCounts[source]}</span>
+            </button>
           ))}
         </div>
 
@@ -296,30 +320,68 @@ const Media = () => {
         .source-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.35rem;
-          padding: 0.35rem 0.75rem;
+          gap: 0.4rem;
+          padding: 0.4rem 0.55rem 0.4rem 0.8rem;
           background: white;
           border: 1px solid var(--border);
-          border-radius: 20px;
+          border-radius: 999px;
           font-size: 0.82rem;
           color: var(--dark);
-          font-weight: 500;
-          transition: all 0.2s ease;
+          font-weight: 600;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+          font-family: inherit;
+          line-height: 1;
         }
 
         .source-badge:hover {
-          background: var(--primary);
+          background: rgba(15, 76, 117, 0.08);
+          border-color: rgba(15, 76, 117, 0.4);
+          color: var(--primary);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(15, 76, 117, 0.12);
+        }
+
+        .source-badge.active {
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light, #3282b8) 100%);
           color: white;
           border-color: var(--primary);
+          box-shadow: 0 6px 18px rgba(15, 76, 117, 0.3);
+        }
+
+        .source-badge.active i { color: white; }
+
+        .source-badge.active .source-badge-count {
+          background: rgba(255, 255, 255, 0.25);
+          color: white;
         }
 
         .source-badge i {
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           color: var(--secondary);
         }
 
         .source-badge:hover i {
-          color: white;
+          color: var(--primary);
+        }
+
+        .source-badge-count {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 22px;
+          height: 22px;
+          padding: 0 6px;
+          border-radius: 999px;
+          background: rgba(15, 76, 117, 0.1);
+          color: var(--primary);
+          font-size: 0.72rem;
+          font-weight: 700;
+          font-variant-numeric: tabular-nums;
+        }
+
+        .source-badge--all {
+          background: linear-gradient(135deg, rgba(15, 76, 117, 0.06) 0%, rgba(50, 130, 184, 0.06) 100%);
         }
 
         .media-source-tag {
