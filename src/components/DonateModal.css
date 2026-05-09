@@ -127,6 +127,15 @@
     margin-bottom: 1.25rem;
 }
 
+@media (max-width: 767px) {
+    .donate-bank-section {
+        order: 1;
+    }
+    .donate-qr-section {
+        order: 2;
+    }
+}
+
 .donate-section-label {
     display: inline-flex;
     align-items: center;

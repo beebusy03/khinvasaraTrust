@@ -90,8 +90,6 @@ const Contact = () => {
                   <option value="donation">Donation</option>
                   <option value="sahayogi">Sahayogi Sabhasad</option>
                   <option value="member">Become a Member</option>
-                  <option value="volunteer">Volunteer</option>
-                  <option value="general">General Inquiry</option>
                 </select>
               </div>
             </div>
