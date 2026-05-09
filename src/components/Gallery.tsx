@@ -113,6 +113,7 @@ const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [page, setPage] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const PAGE_SIZE = 6;
 
   const filteredItems = activeFilter === 'All'
@@ -126,7 +127,32 @@ const Gallery = () => {
   // Reset page when filter changes
   useEffect(() => {
     setPage(0);
+    setIsAutoScrolling(true);
   }, [activeFilter]);
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isAutoScrolling || totalPages <= 1 || selectedImage) return;
+
+    const interval = setInterval(() => {
+      setPage((prevPage) => (prevPage + 1) % totalPages);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isAutoScrolling, totalPages, selectedImage]);
+
+  const handleMouseEnter = () => {
+    setIsAutoScrolling(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoScrolling(true);
+  };
+
+  const handleImageClick = (item: GalleryItem) => {
+    setSelectedImage(item);
+    setIsAutoScrolling(false);
+  };
 
   // Category counts
   const categoryCounts: Record<string, number> = {
@@ -170,12 +196,17 @@ const Gallery = () => {
         </div>
 
         <div className="gallery-carousel">
-          <div className="gallery-grid" key={page}>
+          <div
+            className="gallery-grid"
+            key={page}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             {visibleItems.map((item, index) => (
               <div
                 className={`gallery-item ${item.large ? 'large' : ''}`}
                 key={`${page}-${index}`}
-                onClick={() => setSelectedImage(item)}
+                onClick={() => handleImageClick(item)}
               >
                 <img src={item.image} alt={item.title} loading="lazy" />
                 <div className="gallery-overlay">

@@ -1304,13 +1304,16 @@ function PhotoGrid({
   photos,
   title,
   onSelect,
+  isLightboxOpen = false,
 }: {
   photos: Photo[];
   title?: string;
   onSelect: (p: LightboxPhoto) => void;
+  isLightboxOpen?: boolean;
 }) {
   const PAGE_SIZE = 6;
   const [page, setPage] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
   if (!photos || photos.length === 0) return null;
 
@@ -1321,7 +1324,32 @@ function PhotoGrid({
   // Reset to first page if photos array changes
   useEffect(() => {
     setPage(0);
+    setIsAutoScrolling(true);
   }, [photos]);
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isAutoScrolling || totalPages <= 1 || isLightboxOpen) return;
+
+    const interval = setInterval(() => {
+      setPage((prevPage) => (prevPage + 1) % totalPages);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isAutoScrolling, totalPages, isLightboxOpen]);
+
+  const handleMouseEnter = () => {
+    setIsAutoScrolling(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoScrolling(true);
+  };
+
+  const handleImageClick = (img: Photo) => {
+    onSelect(img);
+    setIsAutoScrolling(false);
+  };
 
   return (
     <div className="event-gallery">
@@ -1335,12 +1363,17 @@ function PhotoGrid({
           totalPages > 1 ? 'has-pages' : ''
         }`}
       >
-        <div className="event-images-grid" key={page}>
+        <div
+          className="event-images-grid"
+          key={page}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {visiblePhotos.map((img, i) => (
             <div
               key={`${page}-${i}`}
               className="event-image-item"
-              onClick={() => onSelect(img)}
+              onClick={() => handleImageClick(img)}
             >
               <img src={img.src} alt={img.alt} loading="lazy" />
               <div className="image-overlay">
@@ -1486,10 +1519,12 @@ function InitiativeCard({
   initiative,
   isFirst,
   onSelect,
+  isLightboxOpen = false,
 }: {
   initiative: Initiative;
   isFirst: boolean;
   onSelect: (p: LightboxPhoto) => void;
+  isLightboxOpen?: boolean;
 }) {
   const {
     title, category, categoryIcon, date,
@@ -1529,11 +1564,11 @@ function InitiativeCard({
       {featuredPhoto && <FeaturedPhoto photo={featuredPhoto} onSelect={onSelect} />}
 
       {photos && photos.length > 0 && (
-        <PhotoGrid photos={photos} title="Event Photographs" onSelect={onSelect} />
+        <PhotoGrid photos={photos} title="Event Photographs" onSelect={onSelect} isLightboxOpen={isLightboxOpen} />
       )}
 
       {mediaPhotos && mediaPhotos.length > 0 && (
-        <PhotoGrid photos={mediaPhotos} title="Media Coverage" onSelect={onSelect} />
+        <PhotoGrid photos={mediaPhotos} title="Media Coverage" onSelect={onSelect} isLightboxOpen={isLightboxOpen} />
       )}
 
       <StatsRow stats={stats} />
@@ -1694,6 +1729,7 @@ const Events = () => {
                     initiative={initiative}
                     isFirst={idx === 0}
                     onSelect={setLightboxPhoto}
+                    isLightboxOpen={!!lightboxPhoto}
                   />
                 </div>
               ))}
