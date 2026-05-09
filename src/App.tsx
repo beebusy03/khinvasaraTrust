@@ -19,24 +19,25 @@ const Media        = lazy(() => import('./components/Media'));
 const Gallery      = lazy(() => import('./components/Gallery'));
 const VideoSection = lazy(() => import('./components/VideoSection'));
 
-// Lightweight skeleton shown while a lazy section's bundle loads
+// Shimmer skeleton shown while a lazy section's bundle loads
 const SectionSkeleton = ({ label }: { label: string }) => (
-  <div
+  <section
     aria-busy="true"
     aria-label={`Loading ${label}`}
-    style={{
-      minHeight: '320px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: 'var(--text-light)',
-      fontSize: '0.9rem',
-      gap: '0.5rem',
-      padding: '2rem',
-    }}
+    className="section-skeleton"
   >
-    <i className="fas fa-spinner fa-spin"></i> Loading {label}…
-  </div>
+    <div className="skeleton-header">
+      <div className="skeleton-bar skeleton-bar--badge"></div>
+      <div className="skeleton-bar skeleton-bar--title"></div>
+      <div className="skeleton-bar skeleton-bar--sub"></div>
+    </div>
+    <div className="skeleton-grid">
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+    </div>
+    <span className="visually-hidden">Loading {label}…</span>
+  </section>
 );
 
 // Recognised top-level routes/hashes for this single-page app.

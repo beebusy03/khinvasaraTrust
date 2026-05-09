@@ -36,7 +36,7 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
         {/* ── Logo ── */}
         <a href="#" className="logo">
           <div className="logo-icon">
-            <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
+            <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" decoding="async" />
           </div>
           <div className="logo-text-container">
             <span className="logo-text notranslate" translate="no">

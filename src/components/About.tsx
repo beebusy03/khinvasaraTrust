@@ -85,7 +85,7 @@ const About = () => {
                   key={i}
                   className={`carousel-slide ${i === currentSlide ? 'active' : ''}`}
                 >
-                  <img src={img.src} alt={img.alt} />
+                  <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>
@@ -126,17 +126,33 @@ const About = () => {
               mr="खिंवासरा फॅमिली (घोडेगांवकर) वेलफेअर निधी"
             />
           </h3>
-          
-          <p><strong>
-            <I18nText
-              en="Khinvasara Family (Ghodegaonkar) Welfare Nidhi"
-              mr="खिंवासरा फॅमिली (घोडेगांवकर) वेलफेअर निधी"
-            />
-          </strong>, popularly known as <strong>
-            <I18nText en="Khinvasara Trust" mr="खिंवासरा ट्रस्ट" />
-          </strong>, was founded with a simple belief — to give back to society with sincerity, compassion, and collective family commitment.</p>
-          
-          <p>Rooted in strong family values, the Trust reflects our belief that meaningful change begins when families come together to serve the community. Our mission is to nurture a culture of togetherness, responsibility, and compassion, while extending a helping hand to deserving individuals and communities for a better tomorrow.</p>
+
+          <I18nText
+            as="p"
+            en={
+              <>
+                <strong>Khinvasara Family (Ghodegaonkar) Welfare Nidhi</strong>,
+                popularly known as <strong>Khinvasara Trust</strong>, was founded
+                with a simple belief — to give back to society with sincerity,
+                compassion, and collective family commitment.
+              </>
+            }
+            mr={
+              <>
+                <strong>खिंवासरा फॅमिली (घोडेगांवकर) वेलफेअर निधी</strong>, जो{' '}
+                <strong>खिंवासरा ट्रस्ट</strong> या नावाने ओळखला जातो, त्याची
+                स्थापना एका साध्या श्रद्धेतून झाली — प्रामाणिकपणा, करुणा आणि
+                सामूहिक कौटुंबिक बांधिलकीच्या भावनेने समाजाचे ऋण फेडावे, हीच ती
+                श्रद्धा.
+              </>
+            }
+          />
+
+          <I18nText
+            as="p"
+            en="Rooted in strong family values, the Trust reflects our belief that meaningful change begins when families come together to serve the community. Our mission is to nurture a culture of togetherness, responsibility, and compassion, while extending a helping hand to deserving individuals and communities for a better tomorrow."
+            mr="भक्कम कौटुंबिक मूल्यांमध्ये रुजलेला हा ट्रस्ट आमच्या एका विश्वासाचे प्रतिबिंब आहे — जेव्हा कुटुंबे समाजसेवेसाठी एकत्र येतात, तेव्हाच खऱ्या अर्थाने सकारात्मक बदलाची सुरुवात होते. एकोपा, जबाबदारी आणि करुणा या मूल्यांची संस्कृती जोपासणे, तसेच उज्ज्वल भविष्यासाठी गरजू व्यक्ती आणि समाजघटकांना मदतीचा हात देणे, हेच आमचे ध्येय आहे."
+          />
 
           <div className="focus-areas-box">
             <h4><i className="fas fa-bullseye"></i> Our Focus Areas</h4>

@@ -38,7 +38,7 @@ const Footer = () => {
         <div className="footer-about">
           <a href="#" className="logo footer-logo">
             <div className="logo-icon footer-logo-icon">
-              <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" />
+              <img src={Tlogo} alt="Khinvasara Trust Logo" className="logo-image" loading="lazy" decoding="async" />
             </div>
             <div className="logo-text-container">
               <span className="logo-text notranslate" translate="no">

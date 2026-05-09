@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 // Media/Recognition Images
 const lokmat2009 = '/2009MedicalCamp/Lokmat_B.gif';
@@ -114,6 +116,9 @@ const Media = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [activeSource, setActiveSource] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; caption: string } | null>(null);
+
+  // Lock background scroll while the lightbox is open
+  useScrollLock(!!selectedImage);
 
   const activeFilter = tabs[activeTab].filter;
   const filteredItems = recognitionItems.filter(item => {
@@ -241,7 +246,7 @@ const Media = () => {
         )}
       </div>
 
-      {selectedImage && (
+      {selectedImage && typeof document !== 'undefined' && createPortal(
         <div
           className="image-modal-overlay"
           onClick={() => setSelectedImage(null)}
@@ -256,7 +261,8 @@ const Media = () => {
             <img src={selectedImage.src} alt={selectedImage.alt} />
             <p className="image-caption">{selectedImage.caption}</p>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
 
       <style>{`
@@ -451,37 +457,47 @@ const Media = () => {
 
         .image-modal-content {
           position: relative;
-          max-width: 90vw;
-          max-height: 90vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          max-width: min(92vw, 1100px);
+          max-height: 92vh;
+          margin: auto;
         }
 
         .image-modal-content img {
+          display: block;
+          width: auto;
+          height: auto;
           max-width: 100%;
-          max-height: 85vh;
+          max-height: 88vh;
           object-fit: contain;
           border-radius: 8px;
+          background: rgba(255, 255, 255, 0.04);
         }
 
         .modal-close-btn {
-          position: absolute;
-          top: -40px;
-          right: 0;
-          background: rgba(255, 255, 255, 0.1);
-          border: none;
+          position: fixed;
+          top: 18px;
+          right: 18px;
+          background: rgba(0, 0, 0, 0.6);
+          border: 2px solid rgba(255, 255, 255, 0.85);
           color: white;
-          font-size: 1.5rem;
-          width: 40px;
-          height: 40px;
+          font-size: 1.2rem;
+          width: 42px;
+          height: 42px;
           border-radius: 50%;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.3s ease;
+          transition: background 0.3s ease, transform 0.3s ease;
+          z-index: 10;
         }
 
         .modal-close-btn:hover {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(0, 0, 0, 0.85);
           transform: rotate(90deg);
         }
 
@@ -506,9 +522,15 @@ const Media = () => {
             padding: 0.75rem;
           }
 
+          .image-modal-overlay { padding: 0.75rem; }
+          .image-modal-content { max-width: 100%; max-height: 100vh; }
+          .image-modal-content img { max-height: 78vh; }
           .modal-close-btn {
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
+            width: 44px;
+            height: 44px;
+            font-size: 1.15rem;
           }
         }
 
