@@ -32,6 +32,10 @@ const Hero = ({ onDonateClick }: HeroProps) => {
           />
         </h1>
         <p className="hero-tagline" style={{marginBottom:"5px"}}>Serving Humanity with Compassion & Dedication</p>
+        <div className="hero-tax-block">
+          <h4><i className="fas fa-certificate"></i> Income Tax Exemption (80G)</h4>
+          <p>Donations to the trust are eligible for deduction under Section 80G.</p>
+        </div>
         <div className="hero-buttons">
           <a href="#donate" onClick={handleDonateClick} className="btn btn-primary">
             <i className="fas fa-hand-holding-heart"></i>

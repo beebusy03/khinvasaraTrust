@@ -45,6 +45,24 @@ const About = () => {
   const pauseAutoPlay = () => setIsPaused(true);
   const resumeAutoPlay = () => setIsPaused(false);
 
+  const handleFocusAreaClick = (e: React.MouseEvent<HTMLAnchorElement>, filter: string) => {
+    e.preventDefault();
+
+    const gallerySection = document.querySelector('#gallery');
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    setTimeout(() => {
+      const filters = document.querySelectorAll('.gallery-filter');
+      filters.forEach((el) => {
+        if (el.textContent?.trim().toLowerCase().startsWith(filter.toLowerCase())) {
+          (el as HTMLElement).click();
+        }
+      });
+    }, 700);
+  };
+
   return (
     <section className="about" id="about">
       <div className="section-header">
@@ -125,39 +143,49 @@ const About = () => {
             <p>The Trust focuses on key areas that contribute to a stronger and more inclusive society:</p>
             <ul className="focus-areas-list">
               <li>
-                <i className="fas fa-graduation-cap"></i>
-                <div>
-                  <strong>Education</strong>
-                  <span>Supporting students through scholarships and helping educational institutions to strengthen infrastructure.</span>
-                </div>
+                <a href="#gallery" onClick={(e) => handleFocusAreaClick(e, 'Education')}>
+                  <i className="fas fa-graduation-cap"></i>
+                  <div>
+                    <strong>Education</strong>
+                    <span>Supporting students through scholarships and helping educational institutions to strengthen infrastructure.</span>
+                  </div>
+                </a>
               </li>
               <li>
-                <i className="fas fa-heartbeat"></i>
-                <div>
-                  <strong>Healthcare</strong>
-                  <span>Organizing medical camps and facilitating access to quality healthcare for rural and underserved communities.</span>
-                </div>
+                <a href="#gallery" onClick={(e) => handleFocusAreaClick(e, 'Health')}>
+                  <i className="fas fa-heartbeat"></i>
+                  <div>
+                    <strong>Healthcare</strong>
+                    <span>Organizing medical camps and facilitating access to quality healthcare for rural and underserved communities.</span>
+                  </div>
+                </a>
               </li>
               <li>
-                <i className="fas fa-leaf"></i>
-                <div>
-                  <strong>Environmental Care</strong>
-                  <span>Promoting initiatives that encourage environmental sustainability.</span>
-                </div>
+                <a href="#gallery" onClick={(e) => handleFocusAreaClick(e, 'Environment')}>
+                  <i className="fas fa-leaf"></i>
+                  <div>
+                    <strong>Environmental Care</strong>
+                    <span>Promoting initiatives that encourage environmental sustainability.</span>
+                  </div>
+                </a>
               </li>
               <li>
-                <i className="fas fa-hands-helping"></i>
-                <div>
-                  <strong>Social Welfare</strong>
-                  <span>Extending support to vulnerable sections of society including the underprivileged.</span>
-                </div>
+                <a href="#gallery" onClick={(e) => handleFocusAreaClick(e, 'Community Service')}>
+                  <i className="fas fa-hands-helping"></i>
+                  <div>
+                    <strong>Social Welfare</strong>
+                    <span>Extending support to vulnerable sections of society including the underprivileged.</span>
+                  </div>
+                </a>
               </li>
               <li>
-                <i className="fas fa-home"></i>
-                <div>
-                  <strong>Natural Calamity Relief</strong>
-                  <span>Providing assistance and relief to victims of natural disasters.</span>
-                </div>
+                <a href="#gallery" onClick={(e) => handleFocusAreaClick(e, 'Community Service')}>
+                  <i className="fas fa-home"></i>
+                  <div>
+                    <strong>Natural Calamity Relief</strong>
+                    <span>Providing assistance and relief to victims of natural disasters.</span>
+                  </div>
+                </a>
               </li>
             </ul>
           </div>
