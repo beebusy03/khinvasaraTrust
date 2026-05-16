@@ -14,11 +14,6 @@ const lokmat2013_hb = '/2013Hb/LokmatHb_B.jpg';
 const kesari2018 = '/2018/Kesari Media news.jpg';
 const pudhari2018 = '/2018/Media Pudhari Coverage.jpg';
 
-const tabs = [
-  { icon: 'fas fa-award', label: 'All Recognitions', filter: 'all' },
-  { icon: 'fas fa-newspaper', label: 'Newspaper Coverage', filter: 'newspaper' },
-];
-
 const recognitionItems = [
   {
     image: kesari2018,
@@ -113,18 +108,19 @@ const recognitionItems = [
 ];
 
 const Media = () => {
-  const [activeTab, setActiveTab] = useState(0);
+
   const [activeSource, setActiveSource] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; caption: string } | null>(null);
 
   // Lock background scroll while the lightbox is open
   useScrollLock(!!selectedImage);
 
-  const activeFilter = tabs[activeTab].filter;
+  // const activeFilter = tabs[activeTab].filter;
   const filteredItems = recognitionItems.filter(item => {
-    const matchesCategory = activeFilter === 'all' || item.category === activeFilter;
+    // const matchesCategory = activeFilter === 'all' || item.category === activeFilter;
     const matchesSource = !activeSource || item.source === activeSource;
-    return matchesCategory && matchesSource;
+    // return matchesCategory && matchesSource;
+    return matchesSource;
   });
 
   const uniqueSources = [...new Set(recognitionItems.map(i => i.source))];
@@ -195,17 +191,7 @@ const Media = () => {
           ))}
         </div>
 
-        <div className="media-tabs">
-          {tabs.map((tab, index) => (
-            <div
-              key={index}
-              className={`media-tab ${activeTab === index ? 'active' : ''}`}
-              onClick={() => setActiveTab(index)}
-            >
-              <i className={tab.icon}></i> {tab.label}
-            </div>
-          ))}
-        </div>
+        
 
         <div className="media-grid">
           {filteredItems.map((item, index) => (
