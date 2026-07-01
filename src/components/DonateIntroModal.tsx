@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./DonateIntroModal.css";
 
 interface DonateIntroModalProps {
@@ -13,6 +13,7 @@ export default function DonateIntroModal({
   onDonate,
 }: DonateIntroModalProps) {
   const [show, setShow] = useState(false);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -27,6 +28,7 @@ export default function DonateIntroModal({
       setShow(false);
     }
   }, [isOpen]);
+
 
   if (!isOpen) return null;
 
@@ -43,9 +45,10 @@ export default function DonateIntroModal({
       aria-modal="true"
       aria-labelledby="donate-intro-title"
     >
-      <div
+        <div
         className={`donate-intro-modal ${show ? "active" : ""}`}
         onClick={(e) => e.stopPropagation()}
+        ref={modalRef}
       >
         <button
           className="donate-intro-close"
@@ -55,6 +58,7 @@ export default function DonateIntroModal({
           <i className="fas fa-times"></i>
         </button>
 
+        <div className="donate-intro-body">
         <div className="donate-intro-hero">
           <div className="donate-intro-icon">
             <i className="fas fa-hand-holding-heart"></i>
@@ -107,7 +111,7 @@ export default function DonateIntroModal({
               </li>
               <li>
                 <i className="fas fa-check-circle"></i>
-                100% transparent every rupee reaches the cause
+                100% transparent - every rupee reaches the cause
               </li>
               <li>
                 <i className="fas fa-check-circle"></i>
@@ -136,6 +140,7 @@ export default function DonateIntroModal({
             Maybe Later
           </button>
         </div>
+        </div>{/* .donate-intro-body */}
       </div>
     </div>
   );

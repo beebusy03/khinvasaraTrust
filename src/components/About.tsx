@@ -31,12 +31,12 @@ const About = () => {
     );
   };
 
-  // Auto-play every 2 seconds; pause on hover
+  // Auto-play every 5 seconds; pause on hover
   useEffect(() => {
     if (isPaused) return;
     intervalRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-    }, 2000);
+    }, 5000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };

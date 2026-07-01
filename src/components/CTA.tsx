@@ -1,3 +1,4 @@
+
 interface CTAProps {
   onDonateClick?: () => void;
 }
@@ -10,7 +11,12 @@ const CTA = ({ onDonateClick }: CTAProps) => {
     e.preventDefault();
     const target = document.querySelector('#contact');
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.location.hash = '#contact';
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    } else {
+      window.location.hash = '#contact';
     }
     // Dispatch after a brief delay so Contact is mounted/visible first
     setTimeout(() => {
@@ -43,14 +49,14 @@ const CTA = ({ onDonateClick }: CTAProps) => {
             <i className="fas fa-handshake"></i>
             Become a Sahayogi Sabhasad
           </a>
-          <a
+          {/* <a
             href="#contact"
             onClick={(e) => handleContactWithSubject(e, 'member')}
             className="btn btn-outline"
           >
             <i className="fas fa-handshake"></i>
             Become a Member
-          </a>
+          </a> */}
         </div>
         <div className="tax-badge">
           <i className="fas fa-certificate"></i>

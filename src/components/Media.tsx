@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useScrollLock } from '../hooks/useScrollLock';
 
@@ -111,6 +111,15 @@ const Media = () => {
 
   const [activeSource, setActiveSource] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; caption: string } | null>(null);
+  const mediaGridRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollCarouselBy = (offset: number) => {
+    if (!mediaGridRef.current) return;
+    mediaGridRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+  };
+
+  const handlePrevItem = () => scrollCarouselBy(-360);
+  const handleNextItem = () => scrollCarouselBy(360);
 
   // Lock background scroll while the lightbox is open
   useScrollLock(!!selectedImage);
@@ -191,9 +200,19 @@ const Media = () => {
           ))}
         </div>
 
-        
+        <div className="media-carousel-header">
+          <div className="media-carousel-title">Newspaper Coverage</div>
+          <div className="media-carousel-controls">
+            <button type="button" className="carousel-arrow-btn" onClick={handlePrevItem} aria-label="Previous item">
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <button type="button" className="carousel-arrow-btn" onClick={handleNextItem} aria-label="Next item">
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
 
-        <div className="media-grid">
+        <div className="media-grid" ref={mediaGridRef}>
           {filteredItems.map((item, index) => (
             <div className="media-card" key={index}>
               <div className="media-thumbnail">
@@ -414,6 +433,101 @@ const Media = () => {
 
         .media-card:hover .media-thumbnail img {
           transform: scale(1.05);
+        }
+
+        .media-carousel-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          margin: 1.5rem 0 1rem;
+          padding: 0 0.75rem;
+        }
+
+        .media-carousel-title {
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--dark);
+        }
+
+        .media-carousel-controls {
+          display: flex;
+          gap: 0.75rem;
+        }
+
+        .carousel-arrow-btn {
+          width: 42px;
+          height: 42px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: white;
+          color: var(--dark);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .carousel-arrow-btn:hover {
+          background: var(--primary);
+          color: white;
+          transform: scale(1.03);
+          box-shadow: 0 8px 18px rgba(15, 76, 117, 0.18);
+        }
+
+        .media-grid {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          gap: 1rem;
+          padding-bottom: 0.75rem;
+          margin-left: -0.75rem;
+          padding-left: 0.75rem;
+          scroll-padding-left: 1rem;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .media-grid::-webkit-scrollbar {
+          height: 10px;
+        }
+
+        .media-grid::-webkit-scrollbar-thumb {
+          background: rgba(15, 76, 117, 0.18);
+          border-radius: 999px;
+        }
+
+        .media-card {
+          min-width: min(360px, 80vw);
+          max-width: min(380px, 80vw);
+          flex: 0 0 auto;
+          scroll-snap-align: center;
+        }
+
+        .media-container {
+          padding-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+          .media-card {
+            min-width: min(90vw, 300px);
+            max-width: min(90vw, 300px);
+          }
+
+          .media-carousel-header {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 0.5rem;
+          }
+
+          .media-carousel-controls {
+            width: 100%;
+            justify-content: flex-start;
+          }
         }
 
         .no-results {

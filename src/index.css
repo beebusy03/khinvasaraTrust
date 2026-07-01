@@ -43,6 +43,9 @@ section[id],
 .hero {
     scroll-margin-top: 90px;
 }
+#contact-form {
+    scroll-margin-top: 90px;
+}
 @media (max-width: 768px) {
     section[id],
     .about,
@@ -53,6 +56,7 @@ section[id],
     .cta-section,
     .contact,
     .hero { scroll-margin-top: 70px; }
+    #contact-form { scroll-margin-top: 70px; }
 }
 
 body {

@@ -20,7 +20,14 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (target) {
+      window.location.hash = href;
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    } else {
+      window.location.hash = href;
+    }
     setMobileMenuOpen(false);
   };
 

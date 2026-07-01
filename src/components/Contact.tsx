@@ -25,6 +25,28 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  useEffect(() => {
+    const scrollToContactForm = () => {
+      const target = document.querySelector('#contact-form');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    if (window.location.hash === '#contact') {
+      scrollToContactForm();
+    }
+
+    const handleHashChange = () => {
+      if (window.location.hash === '#contact') {
+        scrollToContactForm();
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   return (
     <section className="contact" id="contact">
       <div className="section-header">
@@ -66,7 +88,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="contact-form">
-          <h3>Send Us a Message</h3>
+          <h3 id="contact-form">Send Us a Message</h3>
           <form onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">

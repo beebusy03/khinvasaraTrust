@@ -72,7 +72,7 @@ const faqItems: FAQItem[] = [
   },
   {
     id: "financial-details",
-    question: "Where can I get details about Helpage's finances?",
+    question: "Where can I get details about Khinvasara Trust's finances?",
     answer:
       "We maintain complete financial transparency! Our detailed annual audit reports and financial statements are available on our website. You can access comprehensive information about our fund allocation, expense breakdowns, and impact metrics. For specific financial queries, please reach out to info@khinvasaratrust.org and we'll be happy to provide additional details.",
     icon: "fa-file-invoice-dollar",

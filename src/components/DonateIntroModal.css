@@ -18,15 +18,22 @@
     opacity: 0;
     transition: opacity 0.4s ease;
     padding: 1rem;
-    overflow: hidden;
+    /* allow decorative elements to overflow without being clipped */
+    overflow: visible;
 }
 
 .donate-intro-overlay.active {
     opacity: 1;
 }
 
+.donate-intro-hero {
+    position: relative;
+}
+
 .donate-intro-modal {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 600px;
     background: #ffffff;
@@ -38,18 +45,24 @@
     transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
         opacity 0.4s ease;
     max-height: calc(100vh - 2rem);
-    overflow-y: auto;
-    overflow-x: hidden;
-    /* Hide native scrollbar (Firefox + IE) */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    overflow: hidden;
+    /* Reserve space at the bottom so the action buttons stay visible */
+    padding-bottom: 64px;
 }
 
-/* Hide native scrollbar (WebKit) — keep scrolling, no track */
-.donate-intro-modal::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    background: transparent;
+@media (min-width: 640px) {
+    .donate-intro-modal { padding-bottom: 48px; }
+}
+
+@media (max-width: 420px) {
+    .donate-intro-modal { padding-bottom: 80px; }
+}
+
+/* Scrollable body inside the modal */
+.donate-intro-body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
 }
 
 .donate-intro-modal.active {
@@ -93,6 +106,8 @@
     color: #ffffff;
     overflow: hidden;
     background: #ea7317;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
 }
 
 /* Soft accent blobs */
@@ -559,6 +574,19 @@
     color: #0f172a;
     border-color: #cbd5e1;
     transform: translateY(-1px);
+}
+
+@media (max-width: 639px) {
+    .donate-intro-modal {
+        max-width: min(92vw, 520px);
+        width: min(92vw, 520px);
+        max-height: 82vh;
+        margin: 1rem auto 1.5rem;
+        padding-top: 1.2rem;
+    }
+    .donate-intro-hero {
+        padding-top: 2.25rem;
+    }
 }
 
 /* RESPONSIVE */
