@@ -79,12 +79,13 @@ const Navbar = ({ onDonateClick }: NavbarProps) => {
             </a>
           </div>
 
-          <div className="desktop-lang-switcher">
+          {/* Language switcher is temporarily disabled for English-only UI */}
+          {/* <div className="desktop-lang-switcher">
             <LanguageSwitcher />
           </div>
           <div className="mobile-lang-switcher">
             <LanguageSwitcher />
-          </div>
+          </div> */}
 
           {/* Hamburger */}
           <button

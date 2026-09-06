@@ -9,7 +9,7 @@ declare global {
 
 const languages = [
   { code: 'en', name: 'English', nativeName: 'English' },
-  { code: 'mr', name: 'Marathi', nativeName: 'मराठी' },
+  // { code: 'mr', name: 'Marathi', nativeName: 'मराठी' },
 ];
 
 /**
@@ -55,7 +55,8 @@ const LanguageSwitcher = () => {
         new window.google.translate.TranslateElement(
           {
             pageLanguage: 'en',
-            includedLanguages: 'en,mr',
+            // includedLanguages: 'en,mr',
+            includedLanguages: 'en',
             layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
@@ -100,12 +101,14 @@ const LanguageSwitcher = () => {
     if (code === 'en') {
       window.location.href = window.location.pathname;
     } else {
-      const value = `/en/${code}`;
-      document.cookie = `googtrans=${value}; path=/`;
-      if (domain.includes('.')) {
-        document.cookie = `googtrans=${value}; path=/; domain=.${domain.split('.').slice(-2).join('.')}`;
-      }
-      setTimeout(() => window.location.reload(), 100);
+      // Marathi translation is temporarily disabled.
+      // const value = `/en/${code}`;
+      // document.cookie = `googtrans=${value}; path=/`;
+      // if (domain.includes('.')) {
+      //   document.cookie = `googtrans=${value}; path=/; domain=.${domain.split('.').slice(-2).join('.')}`;
+      // }
+      // setTimeout(() => window.location.reload(), 100);
+      return;
     }
   };
 

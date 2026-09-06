@@ -57,28 +57,24 @@ interface I18nTextProps {
 /**
  * Renders the correct language variant.
  *
- * - When a curated `mr` translation is provided, the element is marked
- *   `translate="no"` so Google Translate leaves our hand-written text alone.
- * - When only `en` is provided, we DO NOT mark it as notranslate, so
- *   Google Translate can still translate it when the user picks Marathi.
- *   This keeps the rest of the page translatable while only the curated
- *   spans (proper nouns, brand names, etc.) are protected.
+ * NOTE: Marathi translations are temporarily disabled. We keep English as the
+ * only active language for now and leave the Marathi-specific logic commented
+ * here so it can be restored quickly when needed.
  */
 const I18nText = ({ en, mr, as: Tag = 'span', className }: I18nTextProps) => {
-  const lang = useActiveLang();
-  const hasCurated = !!mr;
-  const content = lang === 'mr' && hasCurated ? mr : en;
+  // const lang = useActiveLang();
+  // const hasCurated = !!mr;
+  // const content = lang === 'mr' && hasCurated ? mr : en;
 
-  if (hasCurated) {
-    return (
-      <Tag className={`notranslate ${className ?? ''}`} translate="no">
-        {content}
-      </Tag>
-    );
-  }
+  // if (hasCurated) {
+  //   return (
+  //     <Tag className={`notranslate ${className ?? ''}`} translate="no">
+  //       {content}
+  //     </Tag>
+  //   );
+  // }
 
-  // No curated translation — let Google Translate handle this normally
-  return <Tag className={className}>{content}</Tag>;
+  return <Tag className={className}>{en}</Tag>;
 };
 
 export default I18nText;
