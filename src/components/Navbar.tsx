@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import LanguageSwitcher from './LanguageSwitcher';
 import Tlogo from '../assets/Tlogo.png';
 import I18nText from './I18nText';
 

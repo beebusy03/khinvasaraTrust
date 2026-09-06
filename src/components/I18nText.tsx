@@ -61,7 +61,7 @@ interface I18nTextProps {
  * only active language for now and leave the Marathi-specific logic commented
  * here so it can be restored quickly when needed.
  */
-const I18nText = ({ en, mr, as: Tag = 'span', className }: I18nTextProps) => {
+const I18nText = ({ en, as: Tag = 'span', className }: I18nTextProps) => {
   // const lang = useActiveLang();
   // const hasCurated = !!mr;
   // const content = lang === 'mr' && hasCurated ? mr : en;
