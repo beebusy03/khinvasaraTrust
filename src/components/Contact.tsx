@@ -110,8 +110,8 @@ const Contact = () => {
                 <select id="subject" value={formData.subject} onChange={handleChange} required>
                   <option value="">Select a subject</option>
                   <option value="donation">Donation</option>
-                  <option value="sahayogi">Sahayogi Sabhasad</option>
                   <option value="member">Become a Member</option>
+                  <option value="other">Any other</option>
                 </select>
               </div>
             </div>

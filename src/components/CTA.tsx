@@ -43,11 +43,11 @@ const CTA = ({ onDonateClick }: CTAProps) => {
           </a>
           <a
             href="#contact"
-            onClick={(e) => handleContactWithSubject(e, 'sahayogi')}
+            onClick={(e) => handleContactWithSubject(e, 'other')}
             className="btn btn-outline"
           >
-            <i className="fas fa-handshake"></i>
-            Become a Sahayogi Sabhasad
+            <i className="fas fa-question-circle"></i>
+            Any other
           </a>
           {/* <a
             href="#contact"
