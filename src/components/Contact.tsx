@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const CONTACT_EMAIL = 'sanketkhinvasara@gmail.com';
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
 
@@ -15,10 +17,37 @@ const Contact = () => {
     return () => window.removeEventListener('prefill-contact-subject', handlePrefill);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    if (sending) return;
+    setSending(true);
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: `Website Inquiry: ${formData.subject} - ${formData.name}`,
+          _replyto: formData.email,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === 'false' || data.success === false) throw new Error('Send failed');
+      alert('Thank you for your message! We will get back to you soon.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch {
+      alert(`Sorry, your message could not be sent. Please email us directly at ${CONTACT_EMAIL}.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -76,7 +105,7 @@ const Contact = () => {
             <i className="fas fa-envelope"></i>
             <div>
               <h4>Email Address</h4>
-              <p>info@khinvasaratrust.org</p>
+              <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
             </div>
           </div>
           <div className="contact-item">
@@ -119,9 +148,9 @@ const Contact = () => {
               <label htmlFor="message">Your Message *</label>
               <textarea id="message" value={formData.message} onChange={handleChange} placeholder="Write your message here..." required></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" disabled={sending}>
               <i className="fas fa-paper-plane"></i>
-              Send Message
+              {sending ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
