@@ -136,7 +136,7 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
                 <i className="fas fa-id-card"></i>
                 <div>
                   <strong>Share PAN for Records</strong>
-                  <p>Email your name &amp; PAN to <strong>sanketkhinvasara@gmail.com</strong> after donating</p>
+                  <p>Email your name &amp; PAN to <strong>info@khinvasaratrust.org</strong> after donating</p>
                 </div>
               </li>
             </ul>

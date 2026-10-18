@@ -94,7 +94,7 @@ const Footer = () => {
           <h4>Contact Info</h4>
           <p><i className="fas fa-map-marker-alt"></i> C/O Onyx Automation Flat No 302, Fortune House, Baner Pashan Link Road, Baner, Pune-411045</p>
           <p><i className="fas fa-phone-alt"></i> +91 94226 46691</p>
-          <p><i className="fas fa-envelope"></i> sanketkhinvasara@gmail.com</p>
+          <p><i className="fas fa-envelope"></i> info@khinvasaratrust.org</p>
           <p><i className="fas fa-globe"></i> www.khinvasaratrust.org</p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const CONTACT_EMAIL = 'sanketkhinvasara@gmail.com';
+const CONTACT_EMAIL = 'info@khinvasaratrust.org';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });

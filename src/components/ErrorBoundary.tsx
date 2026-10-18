@@ -42,7 +42,7 @@ class ErrorBoundary extends Component<Props, State> {
           <p>
             We hit an unexpected error while loading this section.
             Please refresh the page — if the issue continues, contact us at{' '}
-            <a href="mailto:sanketkhinvasara@gmail.com">sanketkhinvasara@gmail.com</a>.
+            <a href="mailto:info@khinvasaratrust.org">info@khinvasaratrust.org</a>.
           </p>
           {this.state.error?.message && (
             <pre className="error-boundary-detail">
