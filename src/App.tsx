@@ -9,7 +9,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import DonateModal from './components/DonateModal';
-import DonateIntroModal from './components/DonateIntroModal';
 import ErrorBoundary from './components/ErrorBoundary';
 import NotFound from './components/NotFound';
 
@@ -58,7 +57,6 @@ const isKnownLocation = (): boolean => {
 function App() {
   const [loading, setLoading] = useState(true);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
-  const [isIntroModalOpen, setIsIntroModalOpen] = useState(false);
   const [notFound, setNotFound] = useState<boolean>(() => !isKnownLocation());
   const [attemptedPath] = useState<string>(
     () => window.location.pathname + window.location.hash
@@ -72,15 +70,15 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Show the donation intro pop-up after the preloader finishes (every load)
-  useEffect(() => {
-    if (loading) return;
-
-    const t = setTimeout(() => {
-      setIsIntroModalOpen(true);
-    }, 600);
-    return () => clearTimeout(t);
-  }, [loading]);
+  // Donation intro pop-up is temporarily disabled.
+  // useEffect(() => {
+  //   if (loading) return;
+  //
+  //   const t = setTimeout(() => {
+  //     setIsIntroModalOpen(true);
+  //   }, 600);
+  //   return () => clearTimeout(t);
+  // }, [loading]);
 
   useEffect(() => {
     if (loading) return;
@@ -153,11 +151,12 @@ function App() {
             isOpen={isDonateModalOpen}
             onClose={closeDonateModal}
           />
-          <DonateIntroModal
+          {/* Donation intro pop-up is temporarily disabled. */}
+          {/* <DonateIntroModal
             isOpen={isIntroModalOpen}
             onClose={() => setIsIntroModalOpen(false)}
             onDonate={openDonateModal}
-          />
+          /> */}
         </ErrorBoundary>
       )}
       {/* Mark notFound state used so re-render triggers if hash changes */}
